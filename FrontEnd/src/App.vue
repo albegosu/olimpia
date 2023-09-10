@@ -2,6 +2,7 @@
 import { RouterView } from 'vue-router'
 import Navbar from './components/NavbarComponent.vue'
 import Footer from './components/FooterComponent.vue'
+import OlimpiaMapsComponent from './components/OlimpiaMapsComponent.vue';
 </script>
 
 <template>
@@ -9,6 +10,7 @@ import Footer from './components/FooterComponent.vue'
     <Navbar />
   </header>
   <RouterView />
+  <OlimpiaMapsComponent />
   <Footer></Footer>
 </template>
 
