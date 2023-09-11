@@ -1,19 +1,23 @@
 <script setup>
 import { RouterView } from 'vue-router'
 import Navbar from './components/NavbarComponent.vue'
-import Footer from './components/FooterComponent.vue'
+import FooterComponent from './components/FooterComponent.vue'
 </script>
 
 <template>
   <header>
     <Navbar />
   </header>
-  <RouterView />
-  <Footer></Footer>
+  <main>
+    <RouterView />
+  </main>
+  <footer>
+    <FooterComponent />
+  </footer>
 </template>
 
 <style scoped>
-  img {
-    width: 100px;
-  }
+img {
+  width: 100px;
+}
 </style>

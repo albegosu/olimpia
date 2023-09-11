@@ -3,17 +3,47 @@
 </script>
 
 <template>
-    <nav>
-        <p>Hi! I'm NavBar</p>
-        <RouterLink to="/"></RouterLink>
+    <nav class="nav">
+        <RouterLink to="/">
+            <img class="nav__logo" src="../assets/img/Logo_olimpiaIcon.png" alt="Logo Olimpia">
+        </RouterLink>
+        <ul class="nav__menu">
+            <li class="nav__menu--item"><RouterLink to="/manos">Manos</RouterLink></li>
+            <li class="nav__menu--item"><RouterLink to="/espacio">Espacio</RouterLink></li>
+            <li class="nav__menu--item"><RouterLink to="/tecnicas">Técnicas</RouterLink></li>
+            <li class="nav__menu--item"><RouterLink to="/blog">Blog</RouterLink></li>
+        </ul>
     </nav>
 </template>
 
 <style scoped>
-    nav {
+    .nav {
         display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+        margin-right: 1rem;
     }
-    img {
-    width: 100px;
-  }
+    .nav__logo {
+        height: 6vh;
+    }
+    .nav__menu{
+        display: flex;
+        gap: 3vw;
+        align-items: center;
+    }
+    .nav__menu--item {
+        list-style: none;
+    }
+    .nav__menu--item a{
+        text-decoration: none;
+        color: var(--green-color);
+        font-weight: bolder;
+        transition: 0.3s;
+    }
+    .nav__menu--item a:hover{
+        text-decoration: none;
+        color: white;
+        letter-spacing: 0.2rem;
+    }
+
 </style>
