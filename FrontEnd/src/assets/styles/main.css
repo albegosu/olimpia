@@ -1,0 +1,27 @@
+:root {
+  --pink-color: #FAE7E0;
+  --salmon-color: #F5AC81;
+  --green-color: #9ACABE;
+  --blur: 10px;
+}
+.html__heigth {
+  height: 100%;
+}
+body {
+  height: 100%;
+  background-color: var(--pink-color);
+  font-family: 'Nunito', sans-serif;
+}
+#app{
+  height: 100%;
+}
+main {
+  height: 100%;
+}
+footer {
+  margin-top: auto;
+  height: 15vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

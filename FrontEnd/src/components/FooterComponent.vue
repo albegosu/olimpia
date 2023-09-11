@@ -1,3 +1,40 @@
+<script setup>
+    import { RouterLink } from 'vue-router'
+</script>
+
 <template>
-    <p>Hi, I'm Footer</p>
+    <p class="footer_location">Gijón, 2023 &reg</p>
+    <RouterLink to="/">
+        <img class="footer__logo" src="../assets/img/Logo_olimpia.png" alt="Logo Olimpia">
+    </RouterLink>
+    <ul class="footer__menu">
+        <li class="footer__menu--item"><RouterLink to="/manos">Manos</RouterLink></li>
+        <li class="footer__menu--item"><RouterLink to="/espacio">Espacio</RouterLink></li>
+        <li class="footer__menu--item"><RouterLink to="/tecnicas">Técnicas</RouterLink></li>
+        <li class="footer__menu--item"><RouterLink to="/blog">Blog</RouterLink></li>
+    </ul>
 </template>
+<style>
+.footer__location {
+    font-style: italic;
+}
+.footer__logo {
+    height: 3vh;
+    margin-left: 6vw;
+}
+.footer__menu{
+    display: flex;
+    gap: 2vw;
+}
+.footer__menu--item {
+    list-style: none;
+}
+.footer__menu--item a{
+    text-decoration: none;
+    color: var(--green-color);
+}
+.footer__menu--item a:hover{
+    text-decoration: none;
+    color: white;
+}
+</style>
