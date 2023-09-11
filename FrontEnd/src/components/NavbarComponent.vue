@@ -37,10 +37,13 @@
     .nav__menu--item a{
         text-decoration: none;
         color: var(--green-color);
+        font-weight: bolder;
+        transition: 0.3s;
     }
     .nav__menu--item a:hover{
         text-decoration: none;
         color: white;
+        letter-spacing: 0.2rem;
     }
 
 </style>

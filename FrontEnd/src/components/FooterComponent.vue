@@ -32,9 +32,11 @@
 .footer__menu--item a{
     text-decoration: none;
     color: var(--green-color);
+    transition: 0.3s;
 }
 .footer__menu--item a:hover{
     text-decoration: none;
     color: white;
+    letter-spacing: 0.2rem;
 }
 </style>
