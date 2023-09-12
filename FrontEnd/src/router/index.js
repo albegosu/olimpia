@@ -4,10 +4,10 @@ import ManosView from '../views/ManosView.vue'
 import EspacioView from '../views/EspacioView.vue'
 import TecnicasView from '../views/TecnicasView.vue'
 import BlogView from '../views/BlogView.vue'
-import PatientsView from '../views/PatientsView.vue'
-import PatientDetailsView from '../views/PatientDetailsView.vue' // Nuevo componente para los detalles del paciente
-import PatientEditView from '../views/PatientEditView.vue' // Nuevo componente para editar datos del paciente
-import PatientNew from '../views/PatientNew.vue'
+import PatientsView from '../views/Patients/PatientsView.vue'
+import PatientDetailsView from '../views/Patients/PatientDetailsView.vue' // Nuevo componente para los detalles del paciente
+import PatientEditView from '../views/Patients/PatientEditView.vue' // Nuevo componente para editar datos del paciente
+import PatientNew from '../views/Patients/PatientNew.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

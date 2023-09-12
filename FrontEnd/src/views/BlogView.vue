@@ -1,18 +1,16 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import BlogData from "@/services/BlogData";
+import PostComponent from "@/components/PostComponent.vue"
 
-const blog = ref([]);
+const posts = ref([]);
 
 const blogData = async () => {
   try {
     const responseBlog = await BlogData.getAll();
     console.log(responseBlog.data);
-    blog.value = responseBlog.data.map((post) => ({
-      id: post.id,
-      blogMessage: post.blogMessage,
-      blogTitle: post.blogTitle,
-    }));
+    posts.value = responseBlog.data;
+
   } catch (error) {
     console.log(error);
   }
@@ -24,5 +22,7 @@ onMounted(blogData)
 
 <template>
     <h1>Blog Works!</h1>
-    <div v-for="blog in blog">{{ blog.blogMessage }}</div>
+    <div v-for="post in posts" :key="posts.id">
+      <PostComponent :post="post"/>
+    </div>
 </template>

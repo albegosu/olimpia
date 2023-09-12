@@ -1,28 +1,8 @@
-<template>
-  <div class="patientsView">
-    <div class="patientsView__header">
-      <RouterLink to="/newpatient" class="btn btnAdd">Agregar Nuevo</RouterLink>
-      <div class="filter">
-        <input v-model="searchTerm" class="filter__input" type="text" placeholder="Buscar por nombre o apellido" @keyup.enter="filterPatients">
-        <button @click="filterPatients" class="btn">Filtrar</button>
-      </div>
-    </div>
-    <section class="patientList">
-      <h1 class="patientList__title">Lista de Pacientes</h1>
-      <div class="patientList__cards">
-        <div class="patientList__cards--card" v-for="patient in filteredPatients" :key="patient.id">
-          <PatientComponent :patient="patient" />
-        </div>
-      </div>
-    </section>
-  </div>
-</template>
-
 <script setup>
 import { ref, onMounted } from 'vue';
 import PatientData from '@/services/PatientData';
-import PatientComponent from '../components/PatientComponent.vue';
-import { usePatientDataStore } from '../services/PiniaStore';
+import PatientComponent from '@/components/PatientComponent.vue';
+import { usePatientDataStore } from '@/services/PiniaStore';
 import { RouterLink } from 'vue-router';
 
 const patients = ref([]);
@@ -60,6 +40,26 @@ const filterPatients = () => {
   }
 };
 </script>
+
+<template>
+  <div class="patientsView">
+    <div class="patientsView__header">
+      <RouterLink to="/newpatient" class="btn btnAdd">Agregar Nuevo</RouterLink>
+      <div class="filter">
+        <input v-model="searchTerm" class="filter__input" type="text" placeholder="Buscar por nombre o apellido" @keyup.enter="filterPatients">
+        <button @click="filterPatients" class="btn">Filtrar</button>
+      </div>
+    </div>
+    <section class="patientList">
+      <h1 class="patientList__title">Lista de Pacientes</h1>
+      <div class="patientList__cards">
+        <div class="patientList__cards--card" v-for="patient in filteredPatients" :key="patient.id">
+          <PatientComponent :patient="patient" />
+        </div>
+      </div>
+    </section>
+  </div>
+</template>
 
 <style scoped>
 .patientsView{
