@@ -1,3 +1,30 @@
+<script setup>
+  import { ref } from 'vue';
+  import { useRouter } from 'vue-router';
+  import PatientData from '@/services/PatientData';
+  
+  const router = useRouter();
+  const newPatient = ref({
+    patientName: '',
+    patientLastName: '',
+    age: '',
+    painType: 'CUELLO',
+    description: '',
+  });
+  
+  const createPatient = async () => {
+    try {
+      // Llama al servicio para crear un nuevo paciente
+      const response = await PatientData.create(newPatient.value);
+  
+      // Después de crear el paciente, puedes redirigir a la vista de lista de pacientes
+      router.push('/patients');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+</script>
+
 <template>
     <div>
       <h1>Agregar Nuevo Paciente</h1>
@@ -35,33 +62,6 @@
       </form>
     </div>
   </template>
-  
-  <script setup>
-  import { ref } from 'vue';
-  import { useRouter } from 'vue-router';
-  import PatientData from '@/services/PatientData';
-  
-  const router = useRouter();
-  const newPatient = ref({
-    patientName: '',
-    patientLastName: '',
-    age: '',
-    painType: 'CUELLO',
-    description: '',
-  });
-  
-  const createPatient = async () => {
-    try {
-      // Llama al servicio para crear un nuevo paciente
-      const response = await PatientData.create(newPatient.value);
-  
-      // Después de crear el paciente, puedes redirigir a la vista de lista de pacientes
-      router.push('/patients');
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  </script>
   
   <style scoped>
   /* Agrega estilos de CSS según tus necesidades para la vista de creación de pacientes */
