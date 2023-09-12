@@ -15,6 +15,9 @@ export const usePatientDataStore = defineStore('patientData', {
     setPatientData(data) {
       this.patientList = data; // Usa this.state para acceder al estado
     },
+    updatePatient(data) {
+      this.patientList = data;
+    }
   },
   getters: {
     getPatientDataList() {
