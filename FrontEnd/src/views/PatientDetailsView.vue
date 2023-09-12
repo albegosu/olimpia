@@ -1,3 +1,42 @@
+<script setup>
+import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+import PatientData from '@/services/PatientData';
+import { usePatientDataStore } from '@/services/PiniaStore';
+
+const route = useRoute();
+const patientDataStore = usePatientDataStore();
+
+const patientId = route.params.id;
+const patient = ref(null);
+
+// Obtén la lista completa de pacientes desde Pinia
+const patientList = patientDataStore.getPatientDataList;
+
+// Obtén el paciente por ID utilizando find
+onMounted(() => {
+  const foundPatient = patientList.find(item => item.id === patientId);
+  if (foundPatient) {
+    patient.value = foundPatient;
+  } else {
+    // Si el paciente no está en Pinia, intenta cargarlo desde la API
+    fetchPatientDetails(patientId);
+  }
+});
+
+const fetchPatientDetails = async (id) => {
+  try {
+    const response = await PatientData.getById(id);
+    const data = response.data;
+    // Almacena los datos del paciente en Pinia
+    patientDataStore.setPatientData(data);
+    patient.value = data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+</script>
+
 <template>
   <div>
     <h1>Detalles del Paciente</h1>
@@ -12,27 +51,6 @@
     <router-link v-if="patient" :to="`/patients`">Volver</router-link>
   </div>
 </template>
-
-<script setup>
-import { ref, onMounted } from 'vue';
-import PatientData from '@/services/PatientData';
-import { useRoute } from 'vue-router';
-
-const route = useRoute(); // Utiliza useRoute para acceder a la ruta actual
-const patient = ref(null); // Inicializa patient como null
-
-const fetchPatientDetails = async () => {
-  const patientId = route.params.id; // Obtén el ID del paciente desde la ruta actual
-  try {
-    const response = await PatientData.getById(patientId);
-    patient.value = response.data; // Asigna los datos del paciente a patient
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-onMounted(fetchPatientDetails);
-</script>
 
 <style scoped>
 .patient-details {

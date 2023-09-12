@@ -15,15 +15,20 @@
 import { ref, onMounted } from 'vue';
 import PatientData from '@/services/PatientData';
 import PatientComponent from '../components/PatientComponent.vue';
+import { usePatientDataStore } from '../services/PiniaStore';
 
 const patients = ref([]);
 const searchTerm = ref('');
 const filteredPatients = ref([]);
 
+const patientDataStore = usePatientDataStore(); // Obtén el módulo de Pinia
+
 const fetchPatients = async () => {
   try {
     const response = await PatientData.getAll();
     patients.value = response.data;
+    // Almacena los pacientes en Pinia
+    patientDataStore.setPatientData(patients.value);
     // Mostrar todos los pacientes al cargar la página
     filteredPatients.value = patients.value;
   } catch (error) {
