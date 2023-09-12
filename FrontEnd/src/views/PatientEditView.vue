@@ -2,7 +2,6 @@
   <div>
     <h1>Editar Paciente</h1>
     <p>Fecha primera consulta: {{ editedPatient.consultationDate }}</p>
-
     <form @submit.prevent="updatePatient">
       <div class="form-group">
         <label for="patientName">Nombre:</label>
@@ -32,13 +31,14 @@
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary">Guardar</button>
+        <router-link :to="`/patients`">Volver</router-link>
       </div>
     </form>
   </div>
 </template>
 
 <script setup>
-import { ref, defineProps, onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import PatientData from '@/services/PatientData';
 import { usePatientDataStore } from '@/services/PiniaStore';
