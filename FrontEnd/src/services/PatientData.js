@@ -14,7 +14,7 @@ export default({
         return http.get(`/patients/${PatientID}`);
     },
     
-    update(PatientID, PatientData) {
+    updateID(PatientID, PatientData) {
         return http.put(`/patients/update/${PatientID}`, PatientData);
     },
     

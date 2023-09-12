@@ -7,6 +7,7 @@ import BlogView from '../views/BlogView.vue'
 import PatientsView from '../views/PatientsView.vue'
 import PatientDetailsView from '../views/PatientDetailsView.vue' // Nuevo componente para los detalles del paciente
 import PatientEditView from '../views/PatientEditView.vue' // Nuevo componente para editar datos del paciente
+import PatientNew from '../views/PatientNew.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,21 +39,32 @@ const router = createRouter({
     },
     {
       path: '/patients',
-      name: 'patients-list',
-      component: PatientsView,
-    },
-    {
-      path: '/patients/:id', // Ruta para ver detalles del paciente
-      name: 'patient-details',
-      component: PatientDetailsView,
-      props: true, // Para pasar el parámetro ID como prop
-    },
-    {
-      path: '/patients/:id/edit', // Ruta para editar datos del paciente
-      name: 'patient-edit',
-      component: PatientEditView,
-      props: true, // Para pasar el parámetro ID como prop
-    },
+      name: 'patients',
+      children: [
+        {
+          path: '', // Ruta vacía para mostrar la lista de pacientes por defecto
+          name: 'patients-list',
+          component: PatientsView,
+        },
+        {
+          path: ':id', // Ruta para ver detalles del paciente
+          name: 'patient-details',
+          component: PatientDetailsView,
+          props: true, // Para pasar el parámetro ID como prop
+        },
+        {
+          path: ':id/edit', // Ruta para editar datos del paciente
+          name: 'patient-edit',
+          component: PatientEditView,
+          props: true, // Para pasar el parámetro ID como prop
+        },
+        {
+          path: '/newpatient', // Ruta para crear paciente
+          name: 'patient-new',
+          component: PatientNew
+        }
+      ],
+    }
   ]
 })
 
