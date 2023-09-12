@@ -29,9 +29,9 @@
         <label for="description">Descripción:</label>
         <textarea v-model="editedPatient.description" id="description" class="form-control" required></textarea>
       </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Guardar</button>
-        <router-link :to="`/patients`">Volver</router-link>
+      <div class="form-group btn__group">
+        <button type="submit" class="btn">Guardar</button>
+        <router-link :to="`/patients`" class="btn">Volver</router-link>
       </div>
     </form>
   </div>

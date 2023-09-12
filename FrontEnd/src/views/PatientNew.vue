@@ -55,9 +55,9 @@
           <label for="description">Descripción:</label>
           <textarea v-model="newPatient.description" id="description" class="form-control" required></textarea>
         </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary">Guardar</button>
-          <RouterLink to="/patients">Volver</RouterLink>
+        <div class="form-group btn__group">
+          <button type="submit" class="btn">Guardar</button>
+          <RouterLink to="/patients" class="btn">Volver</RouterLink>
         </div>
       </form>
     </div>
@@ -65,17 +65,5 @@
   
   <style scoped>
   /* Agrega estilos de CSS según tus necesidades para la vista de creación de pacientes */
-  .btn{
-  padding: 0.5rem;
-  background-color: var(--green-color);
-  border-radius: 0.4rem;
-  color: var(--pink-color);
-  font-size: 1.1rem;
-}
-.btn:hover{
-  color: whitesmoke;
-  letter-spacing: 0.05rem;
-  cursor: pointer;
-}
   </style>
   

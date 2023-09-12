@@ -13,7 +13,7 @@ const { patient } = defineProps(['patient']);
       <p>Fecha de primera consulta: {{ patient.consultationDate }}</p>
       <p>Tipo de Dolor: {{ patient.painType }}</p>
     </div>
-    <div class="patientCard__btn">
+    <div class="btn__group">
       <RouterLink :to="`/patients/${patient.id}/edit`" class="btn">Editar</RouterLink>
       <RouterLink :to="`/patients/${patient.id}`" class="btn">Historial</RouterLink>
     </div>
@@ -26,22 +26,6 @@ const { patient } = defineProps(['patient']);
   border-radius: 0.2rem;
   padding: 10px;
   margin: 10px;
-}
-.btn{
-  padding: 0.5rem;
-  background-color: var(--green-color);
-  border-radius: 0.4rem;
-  color: var(--pink-color);
-  font-size: 1.1rem;
-}
-.btn:hover{
-  color: whitesmoke;
-  letter-spacing: 0.05rem;
-  cursor: pointer;
-}
-.patientCard__btn{
-  display: flex;
-  gap: 1rem;
 }
 </style>
   

@@ -47,8 +47,10 @@ const fetchPatientDetails = async (id) => {
       <p>Tipo de Dolor: {{ patient.painType }}</p>
       <p>Descripción: {{ patient.description }}</p>
     </div>
-    <router-link v-if="patient" :to="`/patients/${patient.id}/edit`">Editar</router-link>
-    <router-link v-if="patient" :to="`/patients`">Volver</router-link>
+    <div class="btn__group">
+      <router-link v-if="patient" :to="`/patients/${patient.id}/edit`" class="btn">Editar</router-link>
+      <router-link v-if="patient" :to="`/patients`" class="btn">Volver</router-link>
+    </div>
   </div>
 </template>
 
@@ -58,17 +60,5 @@ const fetchPatientDetails = async (id) => {
   padding: 10px;
   margin: 10px;
   background-color: #f9f9f9;
-}
-.btn{
-  padding: 0.5rem;
-  background-color: var(--green-color);
-  border-radius: 0.4rem;
-  color: var(--pink-color);
-  font-size: 1.1rem;
-}
-.btn:hover{
-  color: whitesmoke;
-  letter-spacing: 0.05rem;
-  cursor: pointer;
 }
 </style>
