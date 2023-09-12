@@ -7,14 +7,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class patientService {
 
     @Autowired
     patientRepository myRepo;
-
-
     public ArrayList<patientModel> getPatients(String type) {
         if (type == null || type.isEmpty()) {
             return new ArrayList<patientModel>((Collection) myRepo.findAll());
@@ -22,16 +21,8 @@ public class patientService {
             return new ArrayList<>(myRepo.findByPatientName(type));
         }
     }
-
-
-    public patientModel getOnePatient(int id){
-        try{
-            return myRepo.findById(id).orElse(null);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            return null;
-        }
+    public patientModel getById(int id){
+        return myRepo.findById(id).orElse(null);
     }
 
     public String deletePatient(int id) {
@@ -54,23 +45,28 @@ public class patientService {
         }
     }
 
-    public patientModel updatePatient(int id, patientModel newPatient) {
-        try{
-            patientModel toUpdatePatient= myRepo.findById(id).get();
-            toUpdatePatient.setPatientName(newPatient.getPatientName());
-            toUpdatePatient.setPatientLastName(newPatient.getPatientLastName());
-            toUpdatePatient.setAge(newPatient.getAge());
-            toUpdatePatient.setConsultationDate(newPatient.getConsultationDate());
-            toUpdatePatient.setPainType(newPatient.getPainType());
-            toUpdatePatient.setDescription(newPatient.getDescription());
+    public patientModel updateID(int id, patientModel newPatient) {
+        try {
+            Optional<patientModel> optionalPatient = myRepo.findById(id);
 
-            return toUpdatePatient;
+            if (optionalPatient.isPresent()) {
+                patientModel toUpdatePatient = optionalPatient.get();
 
-        }
-        catch(Exception e){
+                // Realizar operaciones con toUpdatePatient
+                toUpdatePatient.setPatientName(newPatient.getPatientName());
+                toUpdatePatient.setPatientLastName(newPatient.getPatientLastName());
+                toUpdatePatient.setPainType(newPatient.getPainType());
+                toUpdatePatient.setDescription(newPatient.getDescription());
+
+                return myRepo.save(toUpdatePatient); // Guardar los cambios en la base de datos y devolver el paciente actualizado
+            } else {
+                // Manejar el caso en el que el paciente no se encuentre
+                return null;
+            }
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-
     }
+
 }

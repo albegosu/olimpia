@@ -19,7 +19,10 @@ public class patientController {
     public ArrayList<patientModel> getPatients(@RequestParam(required = false) String type){
         return myService.getPatients(type);
     }
-
+    @GetMapping(path="/{id}") //Specific User
+    public patientModel getById(@PathVariable int id){
+        return myService.getById(id);
+    }
 
     @PostMapping
     public patientModel setPatients(@RequestBody patientModel newPatient){
@@ -32,7 +35,7 @@ public class patientController {
     }
 
     @PutMapping(path="/update/{id}")
-    public patientModel updatePatient(@RequestBody int id, @RequestBody patientModel newPatient){
-        return myService.updatePatient(id, newPatient);
+    public patientModel updateID(@PathVariable int id, @RequestBody patientModel newPatient){
+        return myService.updateID(id, newPatient);
     }
 }
