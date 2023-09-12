@@ -1,23 +1,37 @@
 <template>
   <div>
     <h1>Editar Paciente</h1>
+    <p>Fecha primera consulta: {{ editedPatient.consultationDate }}</p>
+
     <form @submit.prevent="updatePatient">
       <div class="form-group">
         <label for="patientName">Nombre:</label>
         <input v-model="editedPatient.patientName" type="text" id="patientName" class="form-control" required>
       </div>
-      <!-- Agrega los otros campos de edición aquí, como apellido, edad, fecha de consulta, tipo de dolor, descripción, etc. -->
-
-      <!-- Por ejemplo, para el campo de apellido -->
       <div class="form-group">
         <label for="patientLastName">Apellido:</label>
         <input v-model="editedPatient.patientLastName" type="text" id="patientLastName" class="form-control" required>
       </div>
-
-      <!-- Agrega más campos aquí -->
-
       <div class="form-group">
-        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <label for="age">Edad paciente:</label>
+        <input v-model="editedPatient.age" type="text" id="age" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="painType">Zona dolor:</label>
+        <select v-model="editedPatient.painType" id="painType" class="form-control" required>
+          <option value="CUELLO">CUELLO</option>
+          <option value="ESPALDA">ESPALDA</option>
+          <option value="HOMBRO">HOMBRO</option>
+          <option value="TOBILLO">TOBILLO</option>
+          <option value="CADERA">CADERA</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="description">Descripción:</label>
+        <textarea v-model="editedPatient.description" id="description" class="form-control" required></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Guardar</button>
       </div>
     </form>
   </div>
@@ -68,10 +82,10 @@ const fetchPatientDetails = async (id) => {
 
 const updatePatient = async () => {
   try {
-    const { id, patientName, patientLastName } = editedPatient.value;
+    const { id, patientName, patientLastName, description, painType } = editedPatient.value;
 
     // Crea un objeto con los campos que necesitas para la actualización
-    const updatedData = { id, patientName, patientLastName };
+    const updatedData = { id, patientName, patientLastName, description, painType };
 
     // Realiza la lógica para actualizar los datos del paciente aquí
     // Enviar una solicitud a tu servicio para actualizar la información
