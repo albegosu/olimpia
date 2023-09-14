@@ -1,16 +1,56 @@
+/* BOTONERA */
 .btn{
-    padding: 0.5rem;
-    background-color: var(--green-color);
-    border-radius: 0.4rem;
-    color: var(--pink-color);
-    font-size: 1.1rem;
-  }
-  .btn:hover{
-    color: whitesmoke;
-    letter-spacing: 0.05rem;
-    cursor: pointer;
-  }
-  .btn__group{
-    display: flex;
-    gap: 1rem;
-  }
+  padding: 0.5rem;
+  background-color: var(--salmon-color);
+  border-radius: 0.4rem;
+  color: var(--pink-color);
+  font-size: 1.1rem;
+}
+.btn:hover{
+  color: whitesmoke;
+  background-color: var(--lightsalmon-color);
+  letter-spacing: 0.05rem;
+  cursor: pointer;
+}
+.btn__group{
+  display: flex;
+  gap: 1rem;
+}
+/* INPUTS FORM */
+.form{
+ 
+}
+.form__header{
+  font-size: 25px;
+  font-weight: 400;
+}
+.form__group{
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  padding: 1rem;
+}
+.form__label{
+
+}
+
+#description{
+  min-height: 25vh;
+}
+.form__input{
+  padding: 1rem;
+  background-color: var(--lightsalmon-color);
+
+  width: 60vw;
+  height: 7vh;
+  border-radius: 0.4rem;
+}
+.form__input::placeholder{
+  color: var(--salmon-color);
+}
+.form__input:focus{
+  outline-color: transparent;
+  outline-style: none;
+  font-size: 1rem;
+  min-width: 15vw;
+}
