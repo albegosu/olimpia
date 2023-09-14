@@ -1,8 +1,11 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+
 import PatientData from '@/services/PatientData';
-import { usePatientDataStore } from '@/services/PiniaStore';
+import { usePatientDataStore } from '@/services/PiniaStore'; 
+
+import Swal from 'sweetalert2';
 
 const route = useRoute();
 const router = useRouter();
@@ -11,10 +14,11 @@ const patientDataStore = usePatientDataStore();
 
 const editedPatient = ref({});
 
-// Obtén la lista completa de pacientes desde Pinia
-const patientList = patientDataStore.getPatientDataList;
 // Accede al ID de la URL
 const patientId = route.params.id;
+
+// Obtén la lista completa de pacientes desde Pinia
+const patientList = patientDataStore.getPatientDataList.id;
 
 // Copia los datos del paciente original para la edición
 onMounted(async () => {
@@ -37,8 +41,16 @@ const fetchPatientDetails = async (id) => {
     // Almacena los datos del paciente en Pinia
     patientDataStore.setPatientData(data);
     editedPatient.value = { ...data }; // Copia los datos para evitar mutaciones no deseadas
+
   } catch (error) {
     console.error(error);
+    Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: `${error}`,
+            showConfirmButton: false,
+            timer: 1500
+          })
   }
 };
 
@@ -46,13 +58,10 @@ const updatePatient = async () => {
   try {
     const { id, patientName, patientLastName, description, painType } = editedPatient.value;
 
-    // Crea un objeto con los campos que necesitas para la actualización
+    // Crear un objeto con los campos que necesitas para la actualización
     const updatedData = { id, patientName, patientLastName, description, painType };
 
-    // Realiza la lógica para actualizar los datos del paciente aquí
-    // Enviar una solicitud a tu servicio para actualizar la información
-
-    // Por ejemplo, usando el servicio que proporcionaste:
+    // Enviar una solicitud al servicio para actualizar la información
     await PatientData.updateID(editedPatient.value.id, updatedData);
     console.log(PatientData.updateID);
     
@@ -60,8 +69,26 @@ const updatePatient = async () => {
     patientDataStore.updatePatient(updatedData);
     console.log(updatedData);
 
-    // Redirige a la vista de detalles del paciente después de la actualización
-    router.push(`/patients/${id}`);
+    Swal.fire({
+      title: '¿Quiere guardar los cambios?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: 'var(--green-color)',
+      cancelButtonColor: 'var(--salmon-color)',
+      confirmButtonText: 'Guardar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Usuario actualizado correctamente',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      // Redirige a la vista de detalles del paciente después de la actualización
+      router.push(`/patients/${id}`);
+      }
+    })
   } catch (error) {
     console.error(error);
   }

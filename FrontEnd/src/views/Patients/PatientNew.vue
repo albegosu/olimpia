@@ -1,9 +1,14 @@
 <script setup>
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
+  
   import PatientData from '@/services/PatientData';
   import { usePatientDataStore } from '@/services/PiniaStore.js';
 
+  import Swal from 'sweetalert2';
+
+  import { format } from 'date-fns';
+ 
   const router = useRouter();
   const patientDataStore = usePatientDataStore();
   
@@ -13,31 +18,63 @@
     age: '',
     painType: 'CUELLO',
     description: '',
-    date: 'dd/mm/yyyy',
+    consultationDate: ''
   });
-  
+
+    const currentDate = new Date();
+    const date = format(currentDate, 'yyyy-MM-dd');
+    newPatient.consultationDate = date;
+
   const createPatient = async () => {
     try {
-      // Llama al servicio para crear un nuevo paciente
-      const response = await PatientData.create(newPatient.value);
-      const data = response.data;
-      patientDataStore.setPatientData(data);
+      await Swal.fire({
+        title: '¿Quiere guardar el nuevo paciente?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: 'var(--green-color)',
+        cancelButtonColor: 'var(--salmon-color)',
+        confirmButtonText: 'Guardar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          
+          // Llama al servicio para crear un nuevo paciente tras el alert de confirmación
+          const response = PatientData.create(newPatient.value);
+          console.log(date);
+          console.log(newPatient.consultationDate);
+          console.log(response);
+          // Insertamos el paciente en PiniaStore
+          const data = response.data;
+          patientDataStore.setPatientData(data);
 
-      // Después de crear el paciente, puedes redirigir a la vista de lista de pacientes
-      router.push('/patients');
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Paciente creado correctamente',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          // Después de crear el paciente, puedes redirigir a la vista de lista de pacientes
+          // router.push('/patients');
+        } 
+      })
     } catch (error) {
       console.error(error);
+      Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: `${error}`,
+            showConfirmButton: false,
+            timer: 1500
+          })
     }
   };
 
-  const currentDate = new Date();
-  const time = currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  const date = currentDate.toLocaleDateString([], { day: '2-digit', month: '2-digit', year: '2-digit' });
 
 </script>
 
 <template>
   <div class="newPatientView">
+    {{ newPatient }}
     <h1 class="form__header">Agregar nuevo Paciente</h1>
     <form @submit.prevent="createPatient">
       <div class="form">
