@@ -6,7 +6,7 @@
   import { usePatientDataStore } from '@/services/PiniaStore.js';
 
   import Swal from 'sweetalert2';
-
+  //DEPENDENCIA PARA CAMBIAR FORMATO DE FECHA ENTRE BBDD Y FRONT
   import { format } from 'date-fns';
  
   const router = useRouter();
@@ -21,40 +21,42 @@
     consultationDate: ''
   });
 
+    //CREAR INSTANCIA DATE Y DAR FORMATE SEGÚN BBDD
     const currentDate = new Date();
     const date = format(currentDate, 'yyyy-MM-dd');
-    newPatient.consultationDate = date;
+    
+    const createPatient = async () => {
+      try {
+        await Swal.fire({
+          title: '¿Quiere guardar el nuevo paciente?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: 'var(--green-color)',
+          cancelButtonColor: 'var(--salmon-color)',
+          confirmButtonText: 'Guardar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            //ASIGNAMOS LA DATE ACTUAL AL PACIENTE
+            newPatient.value.consultationDate = date;
+            
+            // Llama al servicio para crear un nuevo paciente tras el alert de confirmación
+            const response = PatientData.create(newPatient.value);
+            //CLG PRUEBAS
+            console.log(newPatient.value.consultationDate);
+            console.log(response);
+            // Insertamos el paciente en PiniaStore
+            const data = response.data;
+            patientDataStore.setPatientData(data);
 
-  const createPatient = async () => {
-    try {
-      await Swal.fire({
-        title: '¿Quiere guardar el nuevo paciente?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: 'var(--green-color)',
-        cancelButtonColor: 'var(--salmon-color)',
-        confirmButtonText: 'Guardar'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          
-          // Llama al servicio para crear un nuevo paciente tras el alert de confirmación
-          const response = PatientData.create(newPatient.value);
-          console.log(date);
-          console.log(newPatient.consultationDate);
-          console.log(response);
-          // Insertamos el paciente en PiniaStore
-          const data = response.data;
-          patientDataStore.setPatientData(data);
-
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Paciente creado correctamente',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          // Después de crear el paciente, puedes redirigir a la vista de lista de pacientes
-          // router.push('/patients');
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Paciente creado correctamente',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            // Después de crear el paciente, puedes redirigir a la vista de lista de pacientes
+            router.push('/patients');
         } 
       })
     } catch (error) {

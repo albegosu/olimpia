@@ -2,7 +2,12 @@
 import { defineProps } from 'vue';
 import { RouterLink } from 'vue-router';
 
+import { format } from 'date-fns';
+
 const { patient } = defineProps(['patient']);
+
+// Format the patient's consultation date
+const formattedConsultationDate = format(new Date(patient.consultationDate), 'dd-MM-yyyy');
 </script>
 
 <template>
@@ -11,7 +16,7 @@ const { patient } = defineProps(['patient']);
     <RouterLink :to="`/patients/${patient.id}`">
       <div class="patientCard__details">
         <h2>Paciente: {{ patient.patientName }} {{ patient.patientLastName }}</h2>
-        <p>Fecha de primera consulta: {{ patient.consultationDate }}</p>
+        <p>Fecha de primera consulta: {{ formattedConsultationDate }}</p>
         <p>Tipo de Dolor: {{ patient.painType }}</p>
       </div>
   </RouterLink>

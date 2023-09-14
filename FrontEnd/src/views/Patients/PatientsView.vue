@@ -68,6 +68,7 @@ const clearSearch = () => {
   filteredPatients.value = patients.value; // Recargar todos los pacientes
 };
 
+
 </script>
 
 <template>
