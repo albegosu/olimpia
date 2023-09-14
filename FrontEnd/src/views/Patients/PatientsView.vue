@@ -9,7 +9,8 @@ const patients = ref([]);
 const searchTerm = ref('');
 const filteredPatients = ref([]);
 
-const patientDataStore = usePatientDataStore(); // Obtén el módulo de Pinia
+// Obtén el módulo de Pinia
+const patientDataStore = usePatientDataStore(); 
 
 const fetchPatients = async () => {
   try {
@@ -66,18 +67,6 @@ const filterPatients = () => {
   display: flex;
   flex-direction: column;
 }
-.btn{
-  padding: 0.5rem;
-  background-color: var(--green-color);
-  border-radius: 0.4rem;
-  color: var(--pink-color);
-  font-size: 1.1rem;
-}
-.btn:hover{
-  color: whitesmoke;
-  letter-spacing: 0.05rem;
-  cursor: pointer;
-}
 .patientsView__header{
   display: flex;
   align-items: center;
@@ -89,20 +78,25 @@ const filterPatients = () => {
   justify-content: center;
   align-items: center;
   gap: 2rem;
+
+  background-color: var(--lightsalmon-color);
+  padding: 0.3rem;
+  padding-right: 0.7rem;
+  border-radius: 0.4rem;
 }
 .filter__input{
   padding: 1rem;
   background-color: transparent;
   min-width: 12vw;
+  transition: 0.3s;
 }
 .filter__input::placeholder{
-  color: var(--green-color);
+  color: whitesmoke;
 }
 .filter__input:focus{
   outline-color: transparent;
   outline-style: none;
   font-size: 1rem;
-  font-weight: bolder;
   min-width: 15vw;
 }
 .patientList{
