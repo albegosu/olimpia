@@ -1,42 +1,3 @@
-<template>
-  <div>
-    <h1>Editar Paciente</h1>
-    <p>Fecha primera consulta: {{ editedPatient.consultationDate }}</p>
-    <form @submit.prevent="updatePatient">
-      <div class="form-group">
-        <label for="patientName">Nombre:</label>
-        <input v-model="editedPatient.patientName" type="text" id="patientName" class="form-control" required>
-      </div>
-      <div class="form-group">
-        <label for="patientLastName">Apellido:</label>
-        <input v-model="editedPatient.patientLastName" type="text" id="patientLastName" class="form-control" required>
-      </div>
-      <div class="form-group">
-        <label for="age">Edad paciente:</label>
-        <input v-model="editedPatient.age" type="text" id="age" class="form-control" required>
-      </div>
-      <div class="form-group">
-        <label for="painType">Zona dolor:</label>
-        <select v-model="editedPatient.painType" id="painType" class="form-control" required>
-          <option value="CUELLO">CUELLO</option>
-          <option value="ESPALDA">ESPALDA</option>
-          <option value="HOMBRO">HOMBRO</option>
-          <option value="TOBILLO">TOBILLO</option>
-          <option value="CADERA">CADERA</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="description">Descripción:</label>
-        <textarea v-model="editedPatient.description" id="description" class="form-control" required></textarea>
-      </div>
-      <div class="form-group btn__group">
-        <button type="submit" class="btn">Guardar</button>
-        <router-link :to="`/patients`" class="btn">Volver</router-link>
-      </div>
-    </form>
-  </div>
-</template>
-
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
@@ -107,6 +68,44 @@ const updatePatient = async () => {
 
 </script>
 
+<template>
+  <div>
+    <h1>Editar Paciente</h1>
+    <p>Fecha primera consulta: {{ editedPatient.consultationDate }}</p>
+    <form @submit.prevent="updatePatient">
+      <div class="form-group">
+        <label for="patientName">Nombre:</label>
+        <input v-model="editedPatient.patientName" type="text" id="patientName" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="patientLastName">Apellido:</label>
+        <input v-model="editedPatient.patientLastName" type="text" id="patientLastName" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="age">Edad paciente:</label>
+        <input v-model="editedPatient.age" type="text" id="age" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="painType">Zona dolor:</label>
+        <select v-model="editedPatient.painType" id="painType" class="form-control" required>
+          <option value="CUELLO">CUELLO</option>
+          <option value="ESPALDA">ESPALDA</option>
+          <option value="HOMBRO">HOMBRO</option>
+          <option value="TOBILLO">TOBILLO</option>
+          <option value="CADERA">CADERA</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="description">Descripción:</label>
+        <textarea v-model="editedPatient.description" id="description" class="form-control" required></textarea>
+      </div>
+      <div class="form-group btn__group">
+        <button type="submit" class="btn">Guardar</button>
+        <router-link :to="`/patients`" class="btn">Volver</router-link>
+      </div>
+    </form>
+  </div>
+</template>
 
 <style scoped>
 /* Agrega estilos de CSS según tus necesidades para la vista de edición */
