@@ -1,27 +1,29 @@
 package olimpia.BackEnd.models;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
 
 @Getter
 @Setter
 @Entity
-@Table(name="user")
+@Table(name="posts")
 @NoArgsConstructor
 @AllArgsConstructor
-public class userModel {
+public class blogModel {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="Id")
     private int id;
 
-    @Column(name="Nombre")
-    private String userName;
+    @Value("Tu título aquí")
+    @Column(name="Title")
+    private String blogTitle ;
 
-    @Column(name="Password")
-    private String userPassword;
+    @Value("Tu mensaje aquí")
+    @Column(name="Message")
+    private String blogMessage;
 }

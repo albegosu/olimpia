@@ -1,4 +1,4 @@
-package olimpia.BackEnd.BBDD;
+package olimpia.BackEnd;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
