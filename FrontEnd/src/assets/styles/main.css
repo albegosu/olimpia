@@ -1,0 +1,33 @@
+:root {
+  /* SOLID */
+  --pink-color: rgba(250, 231, 224, 1);
+  --salmon-color: rgba(245, 172, 129, 1);
+  --green-color: rgba(154, 202, 190, 1);
+  /* TRANSPARENCY */
+  --lightpink-color: rgba(250, 231, 224, 0.5);
+  --lightsalmon-color: rgba(245, 172, 129, 0.5);
+  --lightgreen-color: rgba(154, 202, 190, 0.5);
+
+  --blur: 10px;
+}
+.html__heigth {
+  position: relative;
+  min-height: 100vh;
+}
+body {
+  min-height: 100%;
+  background-color: var(--pink-color);
+  font-family: 'Nunito', sans-serif;
+}
+main {
+  padding-bottom: 10vh;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 10vh; 
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
