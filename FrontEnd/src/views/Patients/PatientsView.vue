@@ -1,15 +1,19 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import PatientData from '@/services/PatientData';
-import PatientComponent from '@/components/PatientComponent.vue';
 import { usePatientDataStore } from '@/services/PiniaStore';
 import { RouterLink } from 'vue-router';
+
+import PatientData from '@/services/PatientData';
+import PatientComponent from '@/components/PatientComponent.vue';
+
+import Swal from 'sweetalert2';
 
 const patients = ref([]);
 const searchTerm = ref('');
 const filteredPatients = ref([]);
 
-const patientDataStore = usePatientDataStore(); // Obtén el módulo de Pinia
+// Obtén el módulo de Pinia
+const patientDataStore = usePatientDataStore(); 
 
 const fetchPatients = async () => {
   try {
@@ -21,6 +25,13 @@ const fetchPatients = async () => {
     filteredPatients.value = patients.value;
   } catch (error) {
     console.error(error);
+    Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: `${error}`,
+            showConfirmButton: false,
+            timer: 1500
+          })
   }
 };
 
@@ -37,8 +48,27 @@ const filterPatients = () => {
       return fullName.toLowerCase().includes(searchTerm.value.toLowerCase());
     });
     filteredPatients.value = filtered;
+
+    // Comprobar si no hay coincidencias y mostrar un alert
+    if (filtered.length === 0) {
+      Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Paciente no encontrado',
+            showConfirmButton: false,
+            timer: 1500
+          })
+      clearSearch();    
+    }
   }
 };
+
+const clearSearch = () => {
+  searchTerm.value = ''; // Limpiar el campo de búsqueda
+  filteredPatients.value = patients.value; // Recargar todos los pacientes
+};
+
+
 </script>
 
 <template>
@@ -47,13 +77,16 @@ const filterPatients = () => {
       <RouterLink to="/newpatient" class="btn btnAdd">Agregar Nuevo</RouterLink>
       <div class="filter">
         <input v-model="searchTerm" class="filter__input" type="text" placeholder="Buscar por nombre o apellido" @keyup.enter="filterPatients">
-        <button @click="filterPatients" class="btn">Filtrar</button>
+        <div>
+          <button @click="filterPatients" class="btn">Filtrar</button>
+          <button @click="clearSearch" class="btn btn__delete">X</button>
+        </div>
       </div>
     </div>
     <section class="patientList">
       <h1 class="patientList__title">Lista de Pacientes</h1>
       <div class="patientList__cards">
-        <div class="patientList__cards--card" v-for="patient in filteredPatients" :key="patient.id">
+        <div class="patientList__cards--card" v-for="patient in patients" :key="patient.id">
           <PatientComponent :patient="patient" />
         </div>
       </div>
@@ -66,18 +99,6 @@ const filterPatients = () => {
   display: flex;
   flex-direction: column;
 }
-.btn{
-  padding: 0.5rem;
-  background-color: var(--green-color);
-  border-radius: 0.4rem;
-  color: var(--pink-color);
-  font-size: 1.1rem;
-}
-.btn:hover{
-  color: whitesmoke;
-  letter-spacing: 0.05rem;
-  cursor: pointer;
-}
 .patientsView__header{
   display: flex;
   align-items: center;
@@ -89,24 +110,40 @@ const filterPatients = () => {
   justify-content: center;
   align-items: center;
   gap: 2rem;
+
+  background-color: var(--lightsalmon-color);
+  padding: 0.3rem;
+  padding-right: 0.7rem;
+  border-radius: 0.4rem;
 }
 .filter__input{
   padding: 1rem;
   background-color: transparent;
   min-width: 12vw;
+  transition: 0.3s;
 }
 .filter__input::placeholder{
-  color: var(--green-color);
+  color: whitesmoke;
 }
 .filter__input:focus{
   outline-color: transparent;
   outline-style: none;
   font-size: 1rem;
-  font-weight: bolder;
   min-width: 15vw;
+}
+.btn__delete{
+  margin-left: 0.5rem;
+  opacity: 30%;
+}
+.btn__delete:hover{
+  opacity: 80%;
 }
 .patientList{
   margin: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .patientList__title{
   text-align: center;
@@ -117,6 +154,16 @@ const filterPatients = () => {
 .patientList__cards{
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+@media (min-width: 1250px) {
+  .patientList__cards{
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 750px) {
+  .patientList__cards{
+    grid-template-columns: 1fr;
+  }
 }
 .patientList__cards--card{
   margin: 1rem 3rem;

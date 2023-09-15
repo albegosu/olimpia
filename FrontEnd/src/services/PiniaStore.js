@@ -8,7 +8,8 @@ export const usePatientDataStore = defineStore('patientData', {
       age: '',
       consultationDate: '',
       painType: '',
-      description: ''
+      description: '',
+      id: '',
     }],
   }),
   actions: {

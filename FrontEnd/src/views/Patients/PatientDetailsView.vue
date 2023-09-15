@@ -1,21 +1,28 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+import { RouterLink } from 'vue-router';
+
 import PatientData from '@/services/PatientData';
 import { usePatientDataStore } from '@/services/PiniaStore';
 
+import Swal from 'sweetalert2';
+
 const route = useRoute();
+
 const patientDataStore = usePatientDataStore();
 
-const patientId = route.params.id;
 const patient = ref(null);
+
+//Obtener el ID desde la URL
+const patientId = route.params.id;
 
 // Obtén la lista completa de pacientes desde Pinia
 const patientList = patientDataStore.getPatientDataList;
 
 // Obtén el paciente por ID utilizando find
 onMounted(() => {
-  const foundPatient = patientList.find(item => item.id === patientId);
+  const foundPatient = patientDataStore.getPatientDataList[patientId];
   if (foundPatient) {
     patient.value = foundPatient;
   } else {
@@ -33,6 +40,13 @@ const fetchPatientDetails = async (id) => {
     patient.value = data;
   } catch (error) {
     console.error(error);
+    Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: `${error}`,
+            showConfirmButton: false,
+            timer: 1500
+          })
   }
 };
 </script>
@@ -48,7 +62,7 @@ const fetchPatientDetails = async (id) => {
       <p>Descripción: {{ patient.description }}</p>
     </div>
     <div class="btn__group">
-      <router-link v-if="patient" :to="`/patients/${patient.id}/edit`" class="btn">Editar</router-link>
+      <RouterLink v-if="patient" :to="`/patients/${patientList.id}/edit`" class="btn">Editar</RouterLink>
       <router-link v-if="patient" :to="`/patients`" class="btn">Volver</router-link>
     </div>
   </div>
