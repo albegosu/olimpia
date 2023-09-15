@@ -59,7 +59,7 @@ const updatePatient = async () => {
     const { id, patientName, patientLastName, description, painType } = editedPatient.value;
 
     // Crear un objeto con los campos que necesitas para la actualización
-    const updatedData = { id, patientName, patientLastName, description, painType };
+    const updatedData = { id, patientName, patientLastName, description, painType, tel };
 
     // Enviar una solicitud al servicio para actualizar la información
     await PatientData.updateID(editedPatient.value.id, updatedData);
@@ -124,13 +124,17 @@ const updatePatient = async () => {
           </select>
         </div>
         <div class="form__group">
+          <label for="tel">Número de contacto:</label>
+          <textarea v-model="editedPatient.tel" id="tel" class="form__input" required></textarea>
+        </div>
+        <div class="form__group">
           <label for="description">Descripción:</label>
           <textarea v-model="editedPatient.description" id="description" class="form__input" required></textarea>
         </div>
       </div>
       <div class="btn__group">
         <button type="submit" class="btn">Guardar</button>
-        <router-link :to="`/patients`" class="btn">Volver</router-link>
+        <RouterLink :to="`/patients`" class="btn">Volver</RouterLink>
       </div>
     </form>
   </div>

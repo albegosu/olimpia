@@ -10,7 +10,7 @@
     <ul class="footer__menu">
         <li class="footer__menu--item"><RouterLink to="/manos">Manos</RouterLink></li>
         <li class="footer__menu--item"><RouterLink to="/espacio">Espacio</RouterLink></li>
-        <li class="footer__menu--item"><RouterLink to="/tecnicas">Técnicas</RouterLink></li>
+        <li class="footer__menu--item"><RouterLink to="/patients">Área Privada</RouterLink></li>
         <li class="footer__menu--item"><RouterLink to="/blog">Blog</RouterLink></li>
     </ul>
 </template>

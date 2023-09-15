@@ -18,6 +18,7 @@
     age: '',
     painType: 'CUELLO',
     description: '',
+    tel: '',
     consultationDate: ''
   });
 
@@ -42,7 +43,6 @@
             // Llama al servicio para crear un nuevo paciente tras el alert de confirmación
             const response = PatientData.create(newPatient.value);
             //CLG PRUEBAS
-            console.log(newPatient.value.consultationDate);
             console.log(response);
             // Insertamos el paciente en PiniaStore
             const data = response.data;
@@ -55,28 +55,26 @@
               showConfirmButton: false,
               timer: 1500
             })
-            // Después de crear el paciente, puedes redirigir a la vista de lista de pacientes
-            router.push('/patients');
-        } 
-      })
-    } catch (error) {
-      console.error(error);
-      Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: `${error}`,
-            showConfirmButton: false,
-            timer: 1500
-          })
-    }
+          } 
+        })
+      } catch (error) {
+        console.error(error);
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: `${error}`,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+      // Después de crear el paciente, puedes redirigir a la vista de lista de pacientes
+      router.push('/patients');
   };
-
 
 </script>
 
 <template>
   <div class="newPatientView">
-    {{ newPatient }}
     <h1 class="form__header">Agregar nuevo Paciente</h1>
     <form @submit.prevent="createPatient">
       <div class="form">
@@ -101,6 +99,10 @@
             <option value="TOBILLO">TOBILLO</option>
             <option value="CADERA">CADERA</option>
           </select>
+        </div>
+        <div class="form__group">
+          <label for="tel">Número de contacto:</label>
+          <input type="number" v-model="newPatient.tel" id="tel" class="form-control form__input" required>
         </div>
         <div class="form__group">
           <label for="description">Descripción:</label>
