@@ -20,7 +20,6 @@ public class blogController {
         return myService.getPosts(type);
     }
 
-
     @PostMapping
     public blogModel setPosts(@RequestBody blogModel newPost){
         return myService.setPosts(newPost);

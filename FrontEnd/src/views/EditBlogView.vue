@@ -11,6 +11,7 @@
 
   const newBlog = ref({
     blogTitle: '',
+    blogSubtitle: '',
     blogMessage: '',
     imgUrl: '',
   });
@@ -51,7 +52,8 @@
         })
       }
       // Después de crear el paciente, puedes redirigir a la vista de lista de pacientes
-      router.push('/blog');
+      router.go(0);
+      router.push('/ediBlog');
   };
 
 const posts = ref([]);
@@ -107,6 +109,8 @@ const deletePost = async (postId) => {
       timer: 1500
     })
   }
+  router.go(0);
+  router.push('/ediBlog');
 };
 
 </script>
@@ -119,6 +123,10 @@ const deletePost = async (postId) => {
         <div class="form__group">
           <label for="blogTitle" class="form__label">Títulos:</label>
           <input v-model="newBlog.blogTitle" type="text" id="blogTitle" class="form-control form__input" placeholder="Titulo Post" required>
+        </div>
+        <div class="form__group">
+          <label for="blogSubtitle" class="form__label">Categoría:</label>
+          <input v-model="newBlog.blogSubtitle" type="text" id="blogSubtitle" class="form-control form__input" placeholder="Categoría Post" required>
         </div>
         <div class="form__group">
           <label for="blogMessage">Artículo:</label>
@@ -137,10 +145,12 @@ const deletePost = async (postId) => {
     <div class="blog">
       <h1 class="blog__title">¡Blog Olimpia!</h1>
       <div class="blog__container">
-        <div v-for="post in posts" :key="posts.id">
+        <div v-for="post in posts" :key="post.id">
           <PostComponent :post="post"/>
-          <button @click="editPost">Editar</button>
-          <button @click="deletePost">Eliminar</button>
+          <div class="btn__group">
+            <button @click="editPost" class="btn">Editar</button>
+            <button @click="deletePost(post.id)" class="btn">Eliminar</button>
+          </div>
         </div>
       </div>
     </div>

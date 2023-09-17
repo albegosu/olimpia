@@ -23,7 +23,6 @@ public class blogService {
         }
     }
 
-
     public blogModel getOneProduct(int id){
         try{
             return myRepo.findById(id).orElse(null);
@@ -59,6 +58,7 @@ public class blogService {
             blogModel toUpdatePost= myRepo.findById(id).get();
             toUpdatePost.setBlogTitle(newPost.getBlogTitle());
             toUpdatePost.setBlogMessage(newPost.getBlogMessage());
+            toUpdatePost.setBlogSubtitle(newPost.getBlogSubtitle());
             toUpdatePost.setImgUrl(newPost.getImgUrl());
 
             return toUpdatePost;

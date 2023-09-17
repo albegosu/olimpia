@@ -23,7 +23,6 @@ onMounted(blogData)
 <template>
   <img class="home__banner" src="../assets/img/banner_BLOG.png" alt="Banner blog">
   <div class="blog">
-    <h1 class="blog__title">¡Blog Olimpia!</h1>
     <div class="blog__container">
       <div v-for="post in posts" :key="posts.id">
         <PostComponent :post="post"/>
