@@ -4,10 +4,11 @@
   
   import PatientData from '@/services/PatientData';
   import { usePatientDataStore } from '@/services/PiniaStore.js';
+  
+  import { format } from 'date-fns';   //DEPENDENCIA PARA CAMBIAR FORMATO DE FECHA ENTRE BBDD Y FRONT
 
   import Swal from 'sweetalert2';
-  //DEPENDENCIA PARA CAMBIAR FORMATO DE FECHA ENTRE BBDD Y FRONT
-  import { format } from 'date-fns';
+
  
   const router = useRouter();
   const patientDataStore = usePatientDataStore();

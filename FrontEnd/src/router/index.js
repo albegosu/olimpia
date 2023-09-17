@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import HomeView from '../views/HomeView.vue'
-import ManosView from '../views/ManosView.vue'
+import ContactoView from '../views/ContactoView.vue'
 import EspacioView from '../views/EspacioView.vue'
 import TecnicasView from '../views/TecnicasView.vue'
 import BlogView from '../views/BlogView.vue'
@@ -20,11 +20,6 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/manos',
-      name: 'manos',
-      component: ManosView
-    },
-    {
       path: '/espacio',
       name: 'espacio',
       component: EspacioView
@@ -40,14 +35,14 @@ const router = createRouter({
       component: BlogView
     },
     {
-      path: '/patients',
-      name: 'patients',
-      component: PatientsView
+      path: '/contacto',
+      name: 'contacto',
+      component: ContactoView
     },
     {
       path: '/patients',
-      name: 'patients-list',
-      component: PatientsView,
+      name: 'patients',
+      component: PatientsView
     },
     {
       path: '/patients/:id',

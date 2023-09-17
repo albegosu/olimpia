@@ -26,4 +26,7 @@ public class blogModel {
     @Value("Tu mensaje aquí")
     @Column(name="Message")
     private String blogMessage;
+
+    @Column(name="Image")
+    private String imgUrl;
 }

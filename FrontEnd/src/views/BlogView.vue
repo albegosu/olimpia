@@ -21,8 +21,24 @@ onMounted(blogData)
 </script>
 
 <template>
-    <h1>Blog Works!</h1>
-    <div v-for="post in posts" :key="posts.id">
-      <PostComponent :post="post"/>
+  <div class="blog">
+    <h1 class="blog__title">¡Blog Olimpia!</h1>
+    <div class="blog__container">
+      <div v-for="post in posts" :key="posts.id">
+        <PostComponent :post="post"/>
+      </div>
     </div>
+  </div>
 </template>
+
+<style scoped>
+.blog__title {
+  font-size: 2rem;
+  text-align: center;
+}
+.blog__container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 2rem;
+}
+</style>

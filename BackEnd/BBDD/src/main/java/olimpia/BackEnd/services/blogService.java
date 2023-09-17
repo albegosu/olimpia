@@ -59,6 +59,7 @@ public class blogService {
             blogModel toUpdatePost= myRepo.findById(id).get();
             toUpdatePost.setBlogTitle(newPost.getBlogTitle());
             toUpdatePost.setBlogMessage(newPost.getBlogMessage());
+            toUpdatePost.setImgUrl(newPost.getImgUrl());
 
             return toUpdatePost;
 
