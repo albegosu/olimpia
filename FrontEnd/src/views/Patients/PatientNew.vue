@@ -68,7 +68,10 @@
         })
       }
         // Después de crear el paciente, redirigir a la vista de lista de pacientes
-        await router.push('/patients');
+        setTimeout(() => {
+          router.replace('/patients');
+          // router.go(-4);
+        }, 1500)
   };
 
 </script>
