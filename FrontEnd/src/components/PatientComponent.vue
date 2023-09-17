@@ -80,6 +80,7 @@ const deletePatient = async () => {
   flex-direction: column;
   align-items: center;
   transition: 0.3s;
+  padding: 1rem;
 }
 .patientCard:hover {
   background-color: var(--lightsalmon-color);

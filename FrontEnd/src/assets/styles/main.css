@@ -12,7 +12,10 @@
 }
 .html__heigth {
   position: relative;
-  min-height: 100vh;
+  min-height: auto;
+}
+#app{
+  min-height: 100%;
 }
 body {
   min-height: 100%;
@@ -21,12 +24,19 @@ body {
 }
 main {
   padding-bottom: 10vh;
+  height: 100%;
+}
+header {
+  position: sticky;
+  top: 0;
+  background-color: var(--pink-color);
 }
 footer {
-  position: absolute;
+  background-color: var(--pink-color);
+  position: fixed;
   bottom: 0;
   width: 100%;
-  height: 10vh; 
+  height: 8vh; 
   display: flex;
   justify-content: space-around;
   align-items: center;

@@ -78,13 +78,16 @@ const updatePatient = async () => {
           showConfirmButton: false,
           timer: 1500
         })
-        }
-      })
-    } catch (error) {
-      console.error(error);
-    }
-    // Redirige a la vista de detalles del paciente después de la actualización
-    await router.push('/patients');
+      }
+    })
+  } catch (error) {
+    console.error(error);
+  }
+  // Redirige a la vista de detalles del paciente después de la actualización
+  setTimeout(() => {
+    router.replace('/patients');
+    // router.go(-4);
+  }, 1500)
 };
 </script>
 

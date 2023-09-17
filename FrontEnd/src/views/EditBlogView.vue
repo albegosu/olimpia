@@ -11,6 +11,7 @@
 
   const newBlog = ref({
     blogTitle: '',
+    blogSubtitle: '',
     blogMessage: '',
     imgUrl: '',
   });
@@ -51,7 +52,8 @@
         })
       }
       // Después de crear el paciente, puedes redirigir a la vista de lista de pacientes
-      router.push('/blog');
+      router.go(0);
+      router.push('/ediBlog');
   };
 
 const posts = ref([]);
@@ -76,6 +78,7 @@ const deletePost = async (postId) => {
   try {
     await Swal.fire({
       title: '¿Quiere eliminar el post?',
+      text: 'Esta acción no se podrá deshacer.',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: 'var(--green-color)',
@@ -107,6 +110,10 @@ const deletePost = async (postId) => {
       timer: 1500
     })
   }
+  setTimeout(() => {
+    router.go(0);
+    router.push('/ediBlog');
+  }, 1500)
 };
 
 </script>
@@ -121,6 +128,10 @@ const deletePost = async (postId) => {
           <input v-model="newBlog.blogTitle" type="text" id="blogTitle" class="form-control form__input" placeholder="Titulo Post" required>
         </div>
         <div class="form__group">
+          <label for="blogSubtitle" class="form__label">Categoría:</label>
+          <input v-model="newBlog.blogSubtitle" type="text" id="blogSubtitle" class="form-control form__input" placeholder="Categoría Post" required>
+        </div>
+        <div class="form__group">
           <label for="blogMessage">Artículo:</label>
           <textarea v-model="newBlog.blogMessage" type="text" id="blogMessage" class="form-control form__input" placeholder="Contenido Post" required></textarea>
         </div>
@@ -131,16 +142,16 @@ const deletePost = async (postId) => {
       </div>
       <div class="btn__group">
         <button type="submit" class="btn">Guardar</button>
-        <RouterLink to="/patients" class="btn">Volver</RouterLink>
+        <RouterLink to="/privated" class="btn">Volver</RouterLink>
       </div>
     </form>
     <div class="blog">
-      <h1 class="blog__title">¡Blog Olimpia!</h1>
       <div class="blog__container">
-        <div v-for="post in posts" :key="posts.id">
+        <div v-for="post in posts" :key="post.id">
           <PostComponent :post="post"/>
-          <button @click="editPost">Editar</button>
-          <button @click="deletePost">Eliminar</button>
+          <div class="btn__group">
+            <button @click="deletePost(post.id)" class="btn">Eliminar</button>
+          </div>
         </div>
       </div>
     </div>
@@ -162,6 +173,9 @@ const deletePost = async (postId) => {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 2rem;
+}
+.btn {
+  margin-left: 2rem;
 }
 </style>
   

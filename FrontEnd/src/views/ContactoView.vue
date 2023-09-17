@@ -4,6 +4,8 @@ import { useRouter } from 'vue-router';
 
 import ContactData from '@/services/ContactData';
 
+import Map from '@/components/OlimpiaMapsComponent.vue'
+
 import Swal from 'sweetalert2';
 
 const router = useRouter();
@@ -46,8 +48,17 @@ const enviarFormulario = async () => {
 </script>
 
 <template>
-    <div class="newContactForm">
-      <h1 class="form__header">¡Contacta con nosotros!</h1>
+  <div>
+  <img class="home__banner" src="../assets/img/banner_CONTACTO.png" alt="Banner contacto">
+  <div class="contactView">
+    <div class="contactView__whats">
+      <h2>Pide cita directamente:</h2>
+      <a href="https://wa.me/650279728/?text=%C2%A1Hola!%20Quer%C3%ADa%20pedir%20una%20cita." target="_blank">
+        <img src="../assets/img/WhatsAppButtonGreenMedium.png" alt="Whats Link" class="contactView__whats--icon">
+      </a>
+    </div>
+    <div class="contactView__form">
+      <h2 class="form__header">¡Contacta con nosotros!</h2>
       <form @submit.prevent="enviarFormulario">
         <div class="form">
           <div class="form__group">
@@ -82,14 +93,53 @@ const enviarFormulario = async () => {
         </div>
       </form>
     </div>
+  </div>
+  <h2>¿Dónde estamos?</h2>
+  <Map class="map"/>
+</div>
 </template>
 
-<style>
-.newContactForm{
+<style scoped>
+.home__banner{
+  width: 100%;
+}
+.contactView {
+  display: flex;
+  padding: 5rem;
+}
+.contactView__form {
+  flex: 40%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.contactView__whats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contactView__whats h2 {
+  font-size: 2rem;
+  color: black;
+}
+.contactView__whats--icon{
+  width: 10vw;
+  margin-top: 2rem;
+}
+.btn {
+  margin: 2rem;
+}
+h2 {
+  font-size: 3rem;
+  font-weight: bolder;
+  color: var(--green-color);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.map{
+  width: 100%; 
+  height: 500px;
 }
 </style>
 
