@@ -17,13 +17,9 @@ const editedPatient = ref({});
 // Accede al ID de la URL
 const patientId = route.params.id;
 
-// Obtén la lista completa de pacientes desde Pinia
-const patientList = patientDataStore.getPatientDataList.id;
-
 // Copia los datos del paciente original para la edición
 onMounted(async () => {
   const patient = patientDataStore.getPatientDataList[patientId];
-  
   if (patient) {
     editedPatient.value = { ...patient }; // Copia los datos para evitar mutaciones no deseadas
     console.log(editedPatient.patientName);
@@ -32,7 +28,6 @@ onMounted(async () => {
     await fetchPatientDetails(patientId);
   }
 });
-
 
 const fetchPatientDetails = async (id) => {
   try {
@@ -56,9 +51,9 @@ const fetchPatientDetails = async (id) => {
 
 const updatePatient = async () => {
   try {
-    const { id, patientName, patientLastName, description, painType, tel } = editedPatient.value;
+    const { id, patientName, patientLastName, description, painType, tel, age } = editedPatient.value;
     // Crear un objeto con los campos que necesitas para la actualización
-    const updatedData = { id, patientName, patientLastName, description, painType, tel };
+    const updatedData = { id, patientName, patientLastName, description, painType, tel, age};
 
     await Swal.fire({
         title: '¿Quiere guardar los cambios?',
@@ -71,7 +66,6 @@ const updatePatient = async () => {
         if (result.isConfirmed) {
           // Enviar una solicitud al servicio para actualizar la información
           PatientData.updateID(editedPatient.value.id, updatedData);
-          console.log(PatientData.updateID);
           
           // Actualiza los datos del paciente en Pinia
           patientDataStore.updatePatient(updatedData);
@@ -84,15 +78,14 @@ const updatePatient = async () => {
           showConfirmButton: false,
           timer: 1500
         })
-        // Redirige a la vista de detalles del paciente después de la actualización
-        router.push(`/patients/${id}`);
         }
       })
     } catch (error) {
       console.error(error);
     }
+    // Redirige a la vista de detalles del paciente después de la actualización
+    await router.push('/patients');
 };
-
 </script>
 
 <template>

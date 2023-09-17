@@ -10,6 +10,8 @@ import PatientsView from '../views/Patients/PatientsView.vue'
 import PatientDetailsView from '../views/Patients/PatientDetailsView.vue' // Nuevo componente para los detalles del paciente
 import PatientEditView from '../views/Patients/PatientEditView.vue' // Nuevo componente para editar datos del paciente
 import PatientNew from '../views/Patients/PatientNew.vue'
+import PrivatedArea from '../views/PrivatedArea.vue'
+import EditBlog from '../views/EditBlogView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -60,6 +62,16 @@ const router = createRouter({
       path: '/newpatient',
       name: 'patient-new',
       component: PatientNew
+    },
+    {
+      path: '/privated',
+      name: 'privated-area',
+      component: PrivatedArea
+    },
+    {
+      path: '/editblog',
+      name: 'edit-blog',
+      component: EditBlog
     }    
   ]
 })

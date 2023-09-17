@@ -46,34 +46,51 @@ const enviarFormulario = async () => {
 </script>
 
 <template>
-    <form @submit.prevent="enviarFormulario">
-        <div>
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" v-model="nombre" required>
+    <div class="newContactForm">
+      <h1 class="form__header">¡Contacta con nosotros!</h1>
+      <form @submit.prevent="enviarFormulario">
+        <div class="form">
+          <div class="form__group">
+          <label for="nombre" class="form__label">Nombre:</label>
+          <input type="text" id="nombre" v-model="nombre" class="form-control form__input" required>
+          </div>
+          <div class="form__group">
+          <label for="apellido" class="form__label">Apellido:</label>
+          <input type="text" id="apellido" v-model="apellido" class="form-control form__input" required>
+          </div>
+          <div class="form__group">
+          <label for="telefono" class="form__label">Teléfono de contacto:</label>
+          <input type="tel" id="telefono" v-model="telefono" class="form-control form__input" required>
+          </div>
+          <div class="form__group">
+          <label for="correo" class="form__label">Correo electrónico:</label>
+          <input type="email" id="correo" v-model="correo" class="form-control form__input" required>
+          </div>
+          <div class="form__group"> 
+          <label for="dolor" class="form__label">Dolor:</label>
+          <select id="dolor" v-model="dolor" class="form-control form__input">
+              <option value="espalda">Cadera</option>
+              <option value="cuello">Cuello</option>
+              <option value="cuello">Espalda</option>
+              <option value="hombro">Hombro</option>
+              <option value="rodilla">Tobillo</option>
+          </select>
+          </div>
+          <div>
+            <button type="submit" class="btn">Enviar</button>
+          </div>
         </div>
-        <div>
-        <label for="apellido">Apellido:</label>
-        <input type="text" id="apellido" v-model="apellido" required>
-        </div>
-        <div>
-        <label for="telefono">Teléfono de contacto:</label>
-        <input type="tel" id="telefono" v-model="telefono" required>
-        </div>
-        <div>
-        <label for="correo">Correo electrónico:</label>
-        <input type="email" id="correo" v-model="correo" required>
-        </div>
-        <div>
-        <label for="dolor">Dolor:</label>
-        <select id="dolor" v-model="dolor">
-            <option value="espalda">Espalda</option>
-            <option value="cuello">Cuello</option>
-            <option value="hombro">Hombro</option>
-            <option value="rodilla">Rodilla</option>
-        </select>
-        </div>
-        <button type="submit">Enviar</button>
-    </form>
+      </form>
+    </div>
 </template>
+
+<style>
+.newContactForm{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+</style>
 
   
