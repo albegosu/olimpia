@@ -8,10 +8,10 @@
         <img class="footer__logo" src="../assets/img/Logo_olimpia.png" alt="Logo Olimpia">
     </RouterLink>
     <ul class="footer__menu">
-        <li class="footer__menu--item"><RouterLink to="/manos">Manos</RouterLink></li>
         <li class="footer__menu--item"><RouterLink to="/espacio">Espacio</RouterLink></li>
         <li class="footer__menu--item"><RouterLink to="/patients">Área Privada</RouterLink></li>
         <li class="footer__menu--item"><RouterLink to="/blog">Blog</RouterLink></li>
+        <li class="footer__menu--item"><RouterLink to="/contacto">Contacto</RouterLink></li>
     </ul>
 </template>
 <style>
