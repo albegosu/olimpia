@@ -44,7 +44,7 @@ import Map from '@/components/OlimpiaMapsComponent.vue'
   <section class="location">
     <h2 class="location__title">¿Dónde estamos?</h2>
     <div class="location__info">
-      <Map />
+      <Map class="map"/>
       <article>
         <div>
           <h4>Localización:</h4>
@@ -169,5 +169,9 @@ import Map from '@/components/OlimpiaMapsComponent.vue'
 }
 .list__planner {
   margin: 1rem;
+}
+.map{
+  width: 45%; 
+  height: 500px;
 }
 </style>
