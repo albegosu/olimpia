@@ -6,6 +6,8 @@ import { RouterLink } from 'vue-router';
 import PatientData from '@/services/PatientData';
 import PatientComponent from '@/components/PatientComponent.vue';
 
+import Swal from 'sweetalert2';
+
 const patients = ref([]);
 const searchTerm = ref('');
 const filteredPatients = ref([]);
@@ -42,6 +44,11 @@ const filterPatients = () => {
 
     // Comprobar si no hay coincidencias y mostrar un alert
     if (filtered.length === 0) {
+      Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: '¡No hay ninguna coincidencia!'
+            })
       clearSearch();    
     }
   }
@@ -51,8 +58,6 @@ const clearSearch = () => {
   searchTerm.value = ''; // Limpiar el campo de búsqueda
   filteredPatients.value = patients.value; // Recargar todos los pacientes
 };
-
-
 </script>
 
 <template>
