@@ -9,15 +9,16 @@ export const usePatientDataStore = defineStore('patientData', {
       consultationDate: '',
       painType: '',
       description: '',
+      tel: '',
       id: '',
     }],
   }),
   actions: {
     setPatientData(data) {
-      this.patientList = data; // Usa this.state para acceder al estado
+      this.patientList = (data); // Usa this.state para acceder al estado
     },
     updatePatient(data) {
-      this.patientList = data;
+      this.patientList = (data);
     }
   },
   getters: {

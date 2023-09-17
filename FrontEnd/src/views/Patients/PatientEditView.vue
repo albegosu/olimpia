@@ -56,42 +56,41 @@ const fetchPatientDetails = async (id) => {
 
 const updatePatient = async () => {
   try {
-    const { id, patientName, patientLastName, description, painType } = editedPatient.value;
-
+    const { id, patientName, patientLastName, description, painType, tel } = editedPatient.value;
     // Crear un objeto con los campos que necesitas para la actualización
-    const updatedData = { id, patientName, patientLastName, description, painType };
+    const updatedData = { id, patientName, patientLastName, description, painType, tel };
 
-    // Enviar una solicitud al servicio para actualizar la información
-    await PatientData.updateID(editedPatient.value.id, updatedData);
-    console.log(PatientData.updateID);
-    
-    // Actualiza los datos del paciente en Pinia
-    patientDataStore.updatePatient(updatedData);
-    console.log(updatedData);
+    await Swal.fire({
+        title: '¿Quiere guardar los cambios?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: 'var(--green-color)',
+        cancelButtonColor: 'var(--salmon-color)',
+        confirmButtonText: 'Guardar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Enviar una solicitud al servicio para actualizar la información
+          PatientData.updateID(editedPatient.value.id, updatedData);
+          console.log(PatientData.updateID);
+          
+          // Actualiza los datos del paciente en Pinia
+          patientDataStore.updatePatient(updatedData);
+          console.log(updatedData);
 
-    Swal.fire({
-      title: '¿Quiere guardar los cambios?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: 'var(--green-color)',
-      cancelButtonColor: 'var(--salmon-color)',
-      confirmButtonText: 'Guardar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Usuario actualizado correctamente',
-        showConfirmButton: false,
-        timer: 1500
+          Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Usuario actualizado correctamente',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        // Redirige a la vista de detalles del paciente después de la actualización
+        router.push(`/patients/${id}`);
+        }
       })
-      // Redirige a la vista de detalles del paciente después de la actualización
-      router.push(`/patients/${id}`);
-      }
-    })
-  } catch (error) {
-    console.error(error);
-  }
+    } catch (error) {
+      console.error(error);
+    }
 };
 
 </script>
@@ -124,13 +123,17 @@ const updatePatient = async () => {
           </select>
         </div>
         <div class="form__group">
+          <label for="tel">Número de contacto:</label>
+          <textarea v-model="editedPatient.tel" id="tel" class="form__input" required></textarea>
+        </div>
+        <div class="form__group">
           <label for="description">Descripción:</label>
           <textarea v-model="editedPatient.description" id="description" class="form__input" required></textarea>
         </div>
       </div>
       <div class="btn__group">
         <button type="submit" class="btn">Guardar</button>
-        <router-link :to="`/patients`" class="btn">Volver</router-link>
+        <RouterLink :to="`/patients`" class="btn">Volver</RouterLink>
       </div>
     </form>
   </div>

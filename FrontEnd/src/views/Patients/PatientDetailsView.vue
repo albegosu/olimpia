@@ -59,11 +59,12 @@ const fetchPatientDetails = async (id) => {
       <p>Edad: {{ patient.age }}</p>
       <p>Fecha de Consulta: {{ patient.consultationDate }}</p>
       <p>Tipo de Dolor: {{ patient.painType }}</p>
+      <p>Número de contacto: {{ patient.tel }}</p>
       <p>Descripción: {{ patient.description }}</p>
     </div>
     <div class="btn__group">
       <RouterLink v-if="patient" :to="`/patients/${patientList.id}/edit`" class="btn">Editar</RouterLink>
-      <router-link v-if="patient" :to="`/patients`" class="btn">Volver</router-link>
+      <RouterLink v-if="patient" :to="`/patients`" class="btn">Volver</RouterLink>
     </div>
   </div>
 </template>
