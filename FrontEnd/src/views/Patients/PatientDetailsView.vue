@@ -52,27 +52,34 @@ const fetchPatientDetails = async (id) => {
 </script>
 
 <template>
-  <div>
+  <div class="detailsView">
     <h1>Detalles del Paciente</h1>
-    <div class="patient-details" v-if="patient">
+    <div class="detailsView__details" v-if="patient">
       <h2>Paciente: {{ patient.patientName }} {{ patient.patientLastName }}</h2>
-      <p>Edad: {{ patient.age }}</p>
       <p>Fecha de Consulta: {{ patient.consultationDate }}</p>
+      <p>Edad: {{ patient.age }}</p>
+      <p>Número de contacto: {{ patient.tel }}</p>
       <p>Tipo de Dolor: {{ patient.painType }}</p>
       <p>Descripción: {{ patient.description }}</p>
     </div>
     <div class="btn__group">
-      <RouterLink v-if="patient" :to="`/patients/${patientList.id}/edit`" class="btn">Editar</RouterLink>
-      <router-link v-if="patient" :to="`/patients`" class="btn">Volver</router-link>
+      <RouterLink v-if="patient" :to="`/patients/${patient.id}/edit`" class="btn">Editar</RouterLink>
+      <RouterLink v-if="patient" :to="`/patients`" class="btn">Volver</RouterLink>
     </div>
   </div>
 </template>
 
 <style scoped>
-.patient-details {
+.detailsView {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.detailsView__details {
   border: 1px solid #ccc;
-  padding: 10px;
+  padding: 40px;
   margin: 10px;
-  background-color: #f9f9f9;
+  width: 80vw;
+  background-color: rgba(255, 255, 255, 0.5)
 }
 </style>

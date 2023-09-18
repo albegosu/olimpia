@@ -8,10 +8,10 @@
             <img class="nav__logo" src="../assets/img/Logo_olimpiaIcon.png" alt="Logo Olimpia">
         </RouterLink>
         <ul class="nav__menu">
-            <li class="nav__menu--item"><RouterLink to="/manos">Manos</RouterLink></li>
             <li class="nav__menu--item"><RouterLink to="/espacio">Espacio</RouterLink></li>
             <li class="nav__menu--item"><RouterLink to="/tecnicas">Técnicas</RouterLink></li>
             <li class="nav__menu--item"><RouterLink to="/blog">Blog</RouterLink></li>
+            <li class="nav__menu--item"><RouterLink to="/contacto">Contacto</RouterLink></li>
         </ul>
     </nav>
 </template>

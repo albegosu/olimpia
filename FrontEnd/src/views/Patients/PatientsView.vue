@@ -25,13 +25,6 @@ const fetchPatients = async () => {
     filteredPatients.value = patients.value;
   } catch (error) {
     console.error(error);
-    Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: `${error}`,
-            showConfirmButton: false,
-            timer: 1500
-          })
   }
 };
 
@@ -52,12 +45,10 @@ const filterPatients = () => {
     // Comprobar si no hay coincidencias y mostrar un alert
     if (filtered.length === 0) {
       Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: 'Paciente no encontrado',
-            showConfirmButton: false,
-            timer: 1500
-          })
+              icon: 'error',
+              title: 'Oops...',
+              text: '¡No hay ninguna coincidencia!'
+            })
       clearSearch();    
     }
   }
@@ -67,8 +58,6 @@ const clearSearch = () => {
   searchTerm.value = ''; // Limpiar el campo de búsqueda
   filteredPatients.value = patients.value; // Recargar todos los pacientes
 };
-
-
 </script>
 
 <template>
@@ -76,7 +65,7 @@ const clearSearch = () => {
     <div class="patientsView__header">
       <RouterLink to="/newpatient" class="btn btnAdd">Agregar Nuevo</RouterLink>
       <div class="filter">
-        <input v-model="searchTerm" class="filter__input" type="text" placeholder="Buscar por nombre o apellido" @keyup.enter="filterPatients">
+        <input v-model="searchTerm" class="filter__input" type="text" placeholder="Buscar por nombre o apellido" @keyup.enter="filterPatients" @keyup.esc="clearSearch">
         <div>
           <button @click="filterPatients" class="btn">Filtrar</button>
           <button @click="clearSearch" class="btn btn__delete">X</button>
@@ -86,7 +75,7 @@ const clearSearch = () => {
     <section class="patientList">
       <h1 class="patientList__title">Lista de Pacientes</h1>
       <div class="patientList__cards">
-        <div class="patientList__cards--card" v-for="patient in patients" :key="patient.id">
+        <div class="patientList__cards--card" v-for="patient in filteredPatients" :key="patient.id">
           <PatientComponent :patient="patient" />
         </div>
       </div>

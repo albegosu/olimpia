@@ -26,4 +26,11 @@ public class blogModel {
     @Value("Tu mensaje aquí")
     @Column(name="Message")
     private String blogMessage;
+
+    @Value("Tu subtítulo aquí")
+    @Column(name="Subtitle")
+    private String blogSubtitle;
+
+    @Column(name="Image")
+    private String imgUrl;
 }

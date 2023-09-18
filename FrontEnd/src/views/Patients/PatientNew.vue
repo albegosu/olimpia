@@ -4,10 +4,10 @@
   
   import PatientData from '@/services/PatientData';
   import { usePatientDataStore } from '@/services/PiniaStore.js';
-
+  
+  import { format } from 'date-fns';   //DEPENDENCIA PARA CAMBIAR FORMATO DE FECHA ENTRE BBDD Y FRONT
   import Swal from 'sweetalert2';
-  //DEPENDENCIA PARA CAMBIAR FORMATO DE FECHA ENTRE BBDD Y FRONT
-  import { format } from 'date-fns';
+
  
   const router = useRouter();
   const patientDataStore = usePatientDataStore();
@@ -18,6 +18,7 @@
     age: '',
     painType: 'CUELLO',
     description: '',
+    tel: '',
     consultationDate: ''
   });
 
@@ -38,12 +39,10 @@
           if (result.isConfirmed) {
             //ASIGNAMOS LA DATE ACTUAL AL PACIENTE
             newPatient.value.consultationDate = date;
-            
             // Llama al servicio para crear un nuevo paciente tras el alert de confirmación
             const response = PatientData.create(newPatient.value);
             //CLG PRUEBAS
-            console.log(newPatient.value.consultationDate);
-            console.log(response);
+            console.log(newPatient.value);
             // Insertamos el paciente en PiniaStore
             const data = response.data;
             patientDataStore.setPatientData(data);
@@ -55,28 +54,30 @@
               showConfirmButton: false,
               timer: 1500
             })
-            // Después de crear el paciente, puedes redirigir a la vista de lista de pacientes
-            router.push('/patients');
-        } 
-      })
-    } catch (error) {
-      console.error(error);
-      Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: `${error}`,
-            showConfirmButton: false,
-            timer: 1500
-          })
-    }
+          
+          } 
+        })
+      } catch (error) {
+        console.error(error);
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: `${error}`,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+        // Después de crear el paciente, redirigir a la vista de lista de pacientes
+        setTimeout(() => {
+          router.replace('/patients');
+          // router.go(-4);
+        }, 1500)
   };
-
 
 </script>
 
 <template>
   <div class="newPatientView">
-    {{ newPatient }}
     <h1 class="form__header">Agregar nuevo Paciente</h1>
     <form @submit.prevent="createPatient">
       <div class="form">
@@ -103,6 +104,10 @@
           </select>
         </div>
         <div class="form__group">
+          <label for="tel">Número de contacto:</label>
+          <input type="number" v-model="newPatient.tel" id="tel" class="form-control form__input" required>
+        </div>
+        <div class="form__group">
           <label for="description">Descripción:</label>
           <textarea v-model="newPatient.description" id="description" class="form-control form__input" required></textarea>
         </div>
@@ -121,18 +126,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-.formHeader{
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 700;
-  color: black;
-}
-.btn{
-  background-color: var(--salmon-color);
-}
-.btn:hover{
-  background-color: var(--lightsalmon-color);
 }
 </style>
   

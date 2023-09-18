@@ -38,6 +38,9 @@ public class patientModel {
     @Column(name="ZonaDolor")
     private PainArea painType;
 
+    @Column(name="Teléfono")
+    private String tel;
+
     @Column(name="Descripcion")
     private String description;
 

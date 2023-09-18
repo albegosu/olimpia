@@ -21,8 +21,36 @@ onMounted(blogData)
 </script>
 
 <template>
-    <h1>Blog Works!</h1>
-    <div v-for="post in posts" :key="posts.id">
-      <PostComponent :post="post"/>
-    </div>
+  <div class="blogView">
+  <img class="home__banner" src="../assets/img/banner_BLOG.png" alt="Banner blog">
+    <section class="blog__container">
+      <article class="blog__container--li" v-for="post in posts" :key="posts.id">
+        <PostComponent :post="post"/>
+      </article>
+    </section>
+  </div>
 </template>
+
+<style>
+.blogView{
+  padding-bottom: 10vh;
+}
+.home__banner{
+  width: 100%;
+}
+.blog__title {
+  font-size: 2rem;
+  text-align: center;
+}
+.blog__container{
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+  padding: 2rem;
+  margin-bottom: 10vh;
+}
+.blog__container--li {
+  height: auto;
+}
+</style>

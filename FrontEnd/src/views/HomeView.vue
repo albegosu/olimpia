@@ -44,7 +44,7 @@ import Map from '@/components/OlimpiaMapsComponent.vue'
   <section class="location">
     <h2 class="location__title">¿Dónde estamos?</h2>
     <div class="location__info">
-      <Map />
+      <Map class="map"/>
       <article>
         <div>
           <h4>Localización:</h4>
@@ -119,17 +119,17 @@ import Map from '@/components/OlimpiaMapsComponent.vue'
   padding: 2rem;
   background-color: rgb(245, 172, 129, 0.5);
   border-radius: 0.5rem;
-  box-shadow: 4px 7px 16px 0px rgb(245, 172, 129, 0.5);
+  box-shadow: 4px 7px 16px 0px rgb(245, 172, 129, 0.2);
 }
 .card__img{
   border-radius: 0.2rem;
   max-width: 20vw;
-  max-height: 25vh;
+  max-height: 20vh;
 }
 .card__img2{
   border-radius: 0.5rem;
   max-width: 20vw;
-  max-height: 25vh;
+  max-height: 20vh;
   order: 2;
 }
 .card__info--name{
@@ -169,5 +169,9 @@ import Map from '@/components/OlimpiaMapsComponent.vue'
 }
 .list__planner {
   margin: 1rem;
+}
+.map{
+  width: 45%; 
+  height: 500px;
 }
 </style>

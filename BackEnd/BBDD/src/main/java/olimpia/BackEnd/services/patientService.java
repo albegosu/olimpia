@@ -55,8 +55,10 @@ public class patientService {
                 // Realizar operaciones con toUpdatePatient
                 toUpdatePatient.setPatientName(newPatient.getPatientName());
                 toUpdatePatient.setPatientLastName(newPatient.getPatientLastName());
+                toUpdatePatient.setAge(newPatient.getAge());
                 toUpdatePatient.setPainType(newPatient.getPainType());
                 toUpdatePatient.setDescription(newPatient.getDescription());
+                toUpdatePatient.setTel(newPatient.getTel());
 
                 return myRepo.save(toUpdatePatient); // Guardar los cambios en la base de datos y devolver el paciente actualizado
             } else {
