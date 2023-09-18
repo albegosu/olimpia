@@ -1,6 +1,7 @@
 <script setup>
-import InWorks from '@/components/InWorksComponent.vue'
+    import InWorks from '@/components/InWorksComponent.vue'
 </script>
+
 <template>
     <div class="inWorks">
         <h2>¡Estamos trabajando en ello!</h2>

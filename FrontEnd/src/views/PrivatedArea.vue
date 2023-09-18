@@ -1,6 +1,7 @@
 <script setup>
     import { RouterLink } from 'vue-router'
 </script>
+
 <template>
     <div class="privated">
         <div>
@@ -11,6 +12,7 @@
         </div>
     </div>
 </template>
+
 <style>
 .privated {
     padding: 3rem;

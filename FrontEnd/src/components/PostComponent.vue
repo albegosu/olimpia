@@ -1,19 +1,18 @@
 <script setup>
-import { defineProps } from 'vue';
-// import { RouterLink } from 'vue-router';
+  import { defineProps } from 'vue';
 
-const { post } = defineProps(['post']);
+  const { post } = defineProps(['post']);
 </script>
 
 <template>
-<div class="patientCard">
-  <img :src="post.imgUrl" alt="Post Image">
-  <section class="patientCard__details">
-    <h2>{{ post.blogTitle }}</h2>
-    <span>{{ post.blogSubtitle }}</span>
-    <p> {{ post.blogMessage }}</p>
-  </section>
-</div>
+  <div class="patientCard">
+    <img :src="post.imgUrl" alt="Post Image">
+    <section class="patientCard__details">
+      <h2>{{ post.blogTitle }}</h2>
+      <span>{{ post.blogSubtitle }}</span>
+      <p> {{ post.blogMessage }}</p>
+    </section>
+  </div>
 </template>
 
 <style>

@@ -17,7 +17,6 @@ const blogData = async () => {
 };
 
 onMounted(blogData)
-
 </script>
 
 <template>

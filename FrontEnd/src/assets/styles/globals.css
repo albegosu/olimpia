@@ -17,9 +17,6 @@
   gap: 1rem;
 }
 /* INPUTS FORM */
-.form{
- 
-}
 .form__header{
   font-size: 25px;
   font-weight: 400;
@@ -30,10 +27,6 @@
   gap: 2vh;
   padding: 1rem;
 }
-.form__label{
-
-}
-
 #description{
   min-height: 25vh;
 }

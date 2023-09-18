@@ -5,15 +5,13 @@ import ContactoView from '../views/ContactoView.vue'
 import EspacioView from '../views/EspacioView.vue'
 import TecnicasView from '../views/TecnicasView.vue'
 import BlogView from '../views/BlogView.vue'
+import PrivatedArea from '../views/PrivatedArea.vue'
+import EditBlog from '../views/EditBlogView.vue'
 
 import PatientsView from '../views/Patients/PatientsView.vue'
 import PatientDetailsView from '../views/Patients/PatientDetailsView.vue' // Nuevo componente para los detalles del paciente
 import PatientEditView from '../views/Patients/PatientEditView.vue' // Nuevo componente para editar datos del paciente
 import PatientNew from '../views/Patients/PatientNew.vue'
-import PrivatedArea from '../views/PrivatedArea.vue'
-import EditBlog from '../views/EditBlogView.vue'
-
-import Login from '../views/Login.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -52,13 +50,13 @@ const router = createRouter({
       path: '/patients/:id',
       name: 'patient-details',
       component: PatientDetailsView,
-      props: true, // Para pasar el parámetro ID como prop
+      props: true
     },
     {
       path: '/patients/:id/edit',
       name: 'patient-edit',
       component: PatientEditView,
-      props: true, // Para pasar el parámetro ID como prop
+      props: true
     },
     {
       path: '/newpatient',
@@ -74,12 +72,7 @@ const router = createRouter({
       path: '/editblog',
       name: 'edit-blog',
       component: EditBlog
-    }  ,
-    {
-      path: '/login',
-      name: 'login',
-      component: Login
-    }  
+    }
   ]
 })
 

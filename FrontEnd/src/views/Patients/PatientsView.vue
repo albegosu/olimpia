@@ -11,17 +11,15 @@ import Swal from 'sweetalert2';
 const patients = ref([]);
 const searchTerm = ref('');
 const filteredPatients = ref([]);
-
-// Obtén el módulo de Pinia
 const patientDataStore = usePatientDataStore(); 
 
 const fetchPatients = async () => {
   try {
     const response = await PatientData.getAll();
     patients.value = response.data;
-    // Almacena los pacientes en Pinia
+
     patientDataStore.setPatientData(patients.value);
-    // Mostrar todos los pacientes al cargar la página
+
     filteredPatients.value = patients.value;
   } catch (error) {
     console.error(error);
@@ -32,31 +30,30 @@ onMounted(fetchPatients);
 
 const filterPatients = () => {
   if (searchTerm.value.trim() === '') {
-    // Si el campo de búsqueda está vacío, muestra todos los pacientes
+
     filteredPatients.value = patients.value;
   } else {
-    // Filtra la lista de pacientes solo si hay un término de búsqueda
+
     const filtered = patients.value.filter(patient => {
       const fullName = `${patient.patientName} ${patient.patientLastName}`;
       return fullName.toLowerCase().includes(searchTerm.value.toLowerCase());
     });
     filteredPatients.value = filtered;
 
-    // Comprobar si no hay coincidencias y mostrar un alert
     if (filtered.length === 0) {
       Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: '¡No hay ninguna coincidencia!'
-            })
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: '¡No hay ninguna coincidencia!'
+                })
       clearSearch();    
     }
   }
 };
 
 const clearSearch = () => {
-  searchTerm.value = ''; // Limpiar el campo de búsqueda
-  filteredPatients.value = patients.value; // Recargar todos los pacientes
+  searchTerm.value = '';
+  filteredPatients.value = patients.value;
 };
 </script>
 

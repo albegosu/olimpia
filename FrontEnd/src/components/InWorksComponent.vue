@@ -1,5 +1,5 @@
 <template>
-<img src="../assets/img/fisherman.png" alt="In works!" class="inWorks__img">
+    <img src="../assets/img/fisherman.png" alt="In works!" class="inWorks__img">
 </template>
 
 <style scoped>

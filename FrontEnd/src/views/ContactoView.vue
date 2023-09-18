@@ -5,7 +5,6 @@ import { useRouter } from 'vue-router';
 import ContactData from '@/services/ContactData';
 
 import Map from '@/components/OlimpiaMapsComponent.vue'
-
 import Swal from 'sweetalert2';
 
 const router = useRouter();
@@ -26,11 +25,7 @@ const enviarFormulario = async () => {
   };
 
   try {
-    // Llama al servicio para crear un nuevo paciente tras el alert de confirmación
     const response = await ContactData.create(formData);
-    // CLG PRUEBAS
-    console.log(response);
-
     Swal.fire({
               position: 'center',
               icon: 'success',

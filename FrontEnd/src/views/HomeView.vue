@@ -1,5 +1,5 @@
 <script setup>
-import Map from '@/components/OlimpiaMapsComponent.vue'
+  import Map from '@/components/OlimpiaMapsComponent.vue'
 </script>
 
 <template>

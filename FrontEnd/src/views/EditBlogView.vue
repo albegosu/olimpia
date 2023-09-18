@@ -27,31 +27,26 @@
           confirmButtonText: 'Guardar'
         }).then((result) => {
           if (result.isConfirmed) {
-            
-            // Llama al servicio para crear un nuevo paciente tras el alert de confirmación
             const response = BlogData.create(newBlog.value);
-            //CLG PRUEBAS
-            console.log(response);
             Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Paciente creado correctamente',
-              showConfirmButton: false,
-              timer: 1500
-            })
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Paciente creado correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
           } 
         })
       } catch (error) {
         console.error(error);
         Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: `${error}`,
-          showConfirmButton: false,
-          timer: 1500
-        })
+                    position: 'center',
+                    icon: 'error',
+                    title: `${error}`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
       }
-      // Después de crear el paciente, puedes redirigir a la vista de lista de pacientes
       router.go(0);
       router.push('/ediBlog');
   };
@@ -70,10 +65,6 @@ const blogData = async () => {
 
 onMounted(blogData)
 
-const editPost = () => {
-  // Agrega aquí la lógica para editar el post
-};
-
 const deletePost = async (postId) => {
   try {
     await Swal.fire({
@@ -86,36 +77,32 @@ const deletePost = async (postId) => {
       confirmButtonText: 'Eliminar'
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(postId);
-        // Llama al servicio para eliminar el post
         BlogData.delete(postId);
-        // Actualiza la lista de posts después de eliminar
         blogData();
         Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Post eliminado correctamente',
-          showConfirmButton: false,
-          timer: 1500
-        })
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Post eliminado correctamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
       }
     });
   } catch (error) {
     console.error(error);
     Swal.fire({
-      position: 'center',
-      icon: 'error',
-      title: `${error}`,
-      showConfirmButton: false,
-      timer: 1500
-    })
+                position: 'center',
+                icon: 'error',
+                title: `${error}`,
+                showConfirmButton: false,
+                timer: 1500
+              })
   }
   setTimeout(() => {
     router.go(0);
     router.push('/ediBlog');
   }, 1500)
 };
-
 </script>
 
 <template>

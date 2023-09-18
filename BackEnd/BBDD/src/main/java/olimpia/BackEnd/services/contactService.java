@@ -20,10 +20,8 @@ public class contactService {
     }
 
     public String enviarFormulario(contactModel contactModel) {
-        // Guarda el formulario en la base de datos
         contactRepository.save(contactModel);
 
-        // Envía un correo electrónico
         enviarCorreoElectronico(contactModel);
 
         return "Formulario enviado con éxito";
@@ -34,7 +32,6 @@ public class contactService {
         mailMessage.setTo("albegosu@gmail.com");
         mailMessage.setSubject("Nuevo formulario de contacto");
 
-        // Construye el cuerpo del mensaje
         String mensaje = "Nuevo formulario de contacto:\n\n" +
                 "Nombre: " + contactModel.getNombre() + "\n" +
                 "Apellido: " + contactModel.getApellido() + "\n" +
@@ -44,7 +41,6 @@ public class contactService {
 
         mailMessage.setText(mensaje);
 
-        // Envía el correo electrónico
         mailSender.send(mailMessage);
     }
 }

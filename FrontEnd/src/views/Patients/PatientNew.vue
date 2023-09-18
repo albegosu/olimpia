@@ -5,10 +5,9 @@
   import PatientData from '@/services/PatientData';
   import { usePatientDataStore } from '@/services/PiniaStore.js';
   
-  import { format } from 'date-fns';   //DEPENDENCIA PARA CAMBIAR FORMATO DE FECHA ENTRE BBDD Y FRONT
+  import { format } from 'date-fns'; 
   import Swal from 'sweetalert2';
 
- 
   const router = useRouter();
   const patientDataStore = usePatientDataStore();
   
@@ -22,56 +21,48 @@
     consultationDate: ''
   });
 
-    //CREAR INSTANCIA DATE Y DAR FORMATE SEGÚN BBDD
-    const currentDate = new Date();
-    const date = format(currentDate, 'yyyy-MM-dd');
+  const currentDate = new Date();
+  const date = format(currentDate, 'yyyy-MM-dd');
+  
+  const createPatient = async () => {
+    try {
+      await Swal.fire({
+        title: '¿Quiere guardar el nuevo paciente?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: 'var(--green-color)',
+        cancelButtonColor: 'var(--salmon-color)',
+        confirmButtonText: 'Guardar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          newPatient.value.consultationDate = date;
+          const response = PatientData.create(newPatient.value);
     
-    const createPatient = async () => {
-      try {
-        await Swal.fire({
-          title: '¿Quiere guardar el nuevo paciente?',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: 'var(--green-color)',
-          cancelButtonColor: 'var(--salmon-color)',
-          confirmButtonText: 'Guardar'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            //ASIGNAMOS LA DATE ACTUAL AL PACIENTE
-            newPatient.value.consultationDate = date;
-            // Llama al servicio para crear un nuevo paciente tras el alert de confirmación
-            const response = PatientData.create(newPatient.value);
-            //CLG PRUEBAS
-            console.log(newPatient.value);
-            // Insertamos el paciente en PiniaStore
-            const data = response.data;
-            patientDataStore.setPatientData(data);
+          const data = response.data;
+          patientDataStore.setPatientData(data);
 
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Paciente creado correctamente',
-              showConfirmButton: false,
-              timer: 1500
-            })
-          
-          } 
-        })
-      } catch (error) {
-        console.error(error);
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: `${error}`,
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
-        // Después de crear el paciente, redirigir a la vista de lista de pacientes
-        setTimeout(() => {
-          router.replace('/patients');
-          // router.go(-4);
-        }, 1500)
+          Swal.fire({
+                      position: 'center',
+                      icon: 'success',
+                      title: 'Paciente creado correctamente',
+                      showConfirmButton: false,
+                      timer: 1500
+                    })
+        } 
+      })
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+                  position: 'center',
+                  icon: 'error',
+                  title: `${error}`,
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+    }
+      setTimeout(() => {
+        router.replace('/patients');
+      }, 1500)
   };
 
 </script>

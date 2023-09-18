@@ -10,14 +10,10 @@ import { format } from 'date-fns';
 import Swal from 'sweetalert2';
 
 const router = useRouter();
-
 const { patient } = defineProps(['patient']);
 const patientDataStore = usePatientDataStore();
-
-// Format the patient's consultation date
 const formattedConsultationDate = format(new Date(patient.consultationDate), 'dd-MM-yyyy');
 
-// Función para eliminar un paciente
 const deletePatient = async () => {
   try {
     await Swal.fire({
@@ -30,10 +26,9 @@ const deletePatient = async () => {
         confirmButtonText: 'Eliminar'
       }).then((result) => {
         if (result.isConfirmed) {
-        // Llama al servicio para eliminar el paciente por su ID
+    
         PatientData.delete(patient.id);
 
-        // Actualiza el store de Pinia para reflejar la eliminación
         patientDataStore.updatePatient(patientDataStore.getPatientDataList.filter(p => p.id !== patient.id));
         
         Swal.fire({

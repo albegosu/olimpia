@@ -1,10 +1,9 @@
-
 <script setup>
-import { ref } from "vue";
-import { GoogleMap, Marker } from "vue3-google-map";
-import { apiKey } from "../config/config";
+  import { ref } from "vue";
+  import { GoogleMap, Marker } from "vue3-google-map";
+  import { apiKey } from "../config/config";
 
-const center = ref({ lat: 43.52602062493763, lng: -5.683527164624468 });
+  const center = ref({ lat: 43.52602062493763, lng: -5.683527164624468 });
 </script>
 
 <template>
