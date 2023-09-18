@@ -13,6 +13,8 @@ import PatientNew from '../views/Patients/PatientNew.vue'
 import PrivatedArea from '../views/PrivatedArea.vue'
 import EditBlog from '../views/EditBlogView.vue'
 
+import Login from '../views/Login.vue'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -72,7 +74,12 @@ const router = createRouter({
       path: '/editblog',
       name: 'edit-blog',
       component: EditBlog
-    }    
+    }  ,
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    }  
   ]
 })
 
