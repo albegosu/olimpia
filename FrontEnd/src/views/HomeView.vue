@@ -10,20 +10,15 @@
       <img class="card__img" src="../assets/img/foto_luci.jpeg" alt="Foto Lucía Pajares">
       <div class="card__info">
         <h3 class="card__info--name">Lucía Pajares Baragaño</h3>
-        <p class="card__info--description">Luci es especialista en fisioterapia invasiva ecoguiada y terapia manual; 
-          lleva ejerciendo en esta clínica desde 2012 destacando por su autoexigencia y un poco de inconformismo. 
-          No lo decimos nosotros, lo dice ella misma: 
-          <strong>«Nunca me conformo, la autoexigencia tanto personal como profesional es lo que me caracteriza, pero todos tranquilos, 
-            la madurez me ha sentado bien y ahora he encontrado el equilibrio para disfrutar tanto de lo conseguido como de lo que queda por conseguir.»</strong>
-          </p>
-        <ul>
+        <p class="card__info--description">¡Hola soy Luci!</p>
+        <!-- <ul>
           <li class="card__info--titles">Diplomatura en Fisioterapia por las Escuelas Universitarias Gimbernat (adscritas a la Universidad Autónoma de Barcelona).</li>
           <li class="card__info--titles">Título de Máster en Osteopatía por la Universidad Pontificia de Salamanca.</li>
           <li class="card__info--titles">Formación continuada en: reeducación en neurología central del adulto, punción seca, ecografía musculoesquelética para fisioterapeutas, electrólisis percutánea intratisular ecoguiada (EPI), neuromodulación percutánea ecoguiada (NMP), Mulligan Concept (cuadrante superior e inferior), Método McKenzie, fibrólisis diacutánea (ganchos) y valoración y tratamiento del sistema fascial.</li>
-        </ul>
+        </ul> -->
       </div>
     </article>
-    <article class="card">
+    <!-- <article class="card">
       <img class="card__img2" src="../assets/img/foto_raquel.jpeg" alt="Foto Lucía Pajares">
       <div class="card__info">
         <h3 class="card__info--name">Raquel Barredo Rodríguez</h3>
@@ -39,7 +34,7 @@
           <li class="card__info--titles">Formación en: terapia manual, valoración y tratamiento del sistema fascial, ecografía musculo-esquelética, suelo pélvico y maternidad, fisioestética, punción seca.</li>
         </ul>
       </div>
-    </article>
+    </article> -->
   </section>
   <section class="location">
     <h2 class="location__title">¿Dónde estamos?</h2>

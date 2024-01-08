@@ -19,7 +19,7 @@
 }
 body {
   min-height: 100%;
-  background-color: var(--pink-color);
+  /* background-color: var(--pink-color); */
   font-family: 'Nunito', sans-serif;
 }
 main {
@@ -29,10 +29,10 @@ main {
 header {
   position: sticky;
   top: 0;
-  background-color: var(--pink-color);
+  /* background-color: var(--pink-color); */
 }
 footer {
-  background-color: var(--pink-color);
+  background-color: white;
   position: fixed;
   bottom: 0;
   width: 100%;

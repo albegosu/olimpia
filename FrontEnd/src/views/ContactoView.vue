@@ -48,7 +48,7 @@ const enviarFormulario = async () => {
   <div class="contactView">
     <div class="contactView__whats">
       <h2>Pide cita directamente:</h2>
-      <a href="https://wa.me/650279728/?text=%C2%A1Hola!%20Quer%C3%ADa%20pedir%20una%20cita." target="_blank">
+      <a href="https://wa.me/623971921/?text=%C2%A1Hola!%20Quer%C3%ADa%20pedir%20una%20cita." target="_blank">
         <img src="../assets/img/WhatsAppButtonGreenMedium.png" alt="Whats Link" class="contactView__whats--icon">
       </a>
     </div>
