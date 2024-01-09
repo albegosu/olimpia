@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <p class="footer_location">Gijón, 2023 &reg</p>
+    <p class="footer_location">Gijón, 2024 &reg</p>
     <RouterLink to="/">
         <img class="footer__logo" src="../assets/img/Logo_olimpia.png" alt="Logo Olimpia">
     </RouterLink>
